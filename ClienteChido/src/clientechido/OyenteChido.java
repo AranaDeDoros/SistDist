@@ -144,16 +144,21 @@ public class OyenteChido implements ActionListener {
 
     private void rangeSearchByID() {
         System.out.println("range search");
-        int fId = Integer.parseInt(panel.getCampoR().getText());
-        int lId = Integer.parseInt(panel.getCampoRR().getText());
+        int fId = Integer.parseInt(panel.getCampoRR().getText());
+        int lId = Integer.parseInt(panel.getCampoR().getText());
         //objetos album para posteriormente llenar campos
-        Album a = cliente.find_XML(Album.class, panel.getCampoR().getText());
-        Album aa = cliente.find_XML(Album.class, panel.getCampoRR().getText());
-        //rango a buscar
-        System.out.println(fId + "" + lId);
-        JFrame f = new JFrame();
-        f.setSize(400, 600);
-        f.setVisible(true);
+        Album a;
+        String tmp;
+        for (int i = fId; i <= lId; i++) {
+            a=   cliente.find_XML(Album.class, String.valueOf(i));
+        tmp= String.join("",a.getIdAlbum()+" "+a.getArtista()+" "+a.getNombre()+" "+a.getGenre()+" "+a.getYear()+" "+a.getTrackNumber()+" "+"\n");
+            System.out.println(tmp);
+            
+        }
+        
+//        JFrame f = new JFrame();
+//        f.setSize(400, 600);
+//        f.setVisible(true);
         cliente.close();
     }
 
