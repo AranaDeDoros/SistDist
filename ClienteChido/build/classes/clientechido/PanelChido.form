@@ -210,6 +210,11 @@
             <Property name="name" type="java.lang.String" value="clr" noResource="true"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaR">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="   records"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -12,12 +12,14 @@ import javax.swing.JTextField;
  * @author HP
  */
 public class PanelChido extends javax.swing.JPanel {
-
+Cliente cliente =new Cliente();
+    
     /**
      * Creates new form PanelChido
      */
     public PanelChido() {
         initComponents();
+        this.etiquetaR.setText(cliente.countREST()+" records on database");
     }
 
     /**
@@ -56,6 +58,7 @@ public class PanelChido extends javax.swing.JPanel {
         botonUpdate = new javax.swing.JButton();
         botonDelete = new javax.swing.JButton();
         botonClr = new javax.swing.JButton();
+        etiquetaR = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -172,6 +175,9 @@ public class PanelChido extends javax.swing.JPanel {
         botonClr.setName("clr"); // NOI18N
         jPanel2.add(botonClr);
 
+        etiquetaR.setText("   records");
+        jPanel2.add(etiquetaR);
+
         add(jPanel2, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,6 +218,7 @@ public class PanelChido extends javax.swing.JPanel {
     private javax.swing.JTextField campoRR;
     private javax.swing.JTextField campoTrack;
     private javax.swing.JTextField campoYear;
+    private javax.swing.JLabel etiquetaR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -233,7 +240,6 @@ public class PanelChido extends javax.swing.JPanel {
    this.botonUpdate.addActionListener(o);
    this.botonDelete.addActionListener(o);
    this.botonClr.addActionListener(o);
-   
     }
 
     public javax.swing.JButton getBotonAdd() {
