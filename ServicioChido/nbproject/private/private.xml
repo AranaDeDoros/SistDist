@@ -6,8 +6,6 @@
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/ServicioChido/web/WEB-INF/glassfish-resources.xml</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/ServicioChido/src/java/listing/Album.java</file>
         </group>
-        <group name="SistDist">
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/ServicioChido/src/java/listing/Album.java</file>
-        </group>
+        <group name="SistDist"/>
     </open-files>
 </project-private>

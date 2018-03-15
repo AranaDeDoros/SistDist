@@ -15,9 +15,9 @@ public class Amala {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String[] arr={"d","#","4"};
+        byte[] arr= new byte [5];
         
-        System.out.println(Generators.UnboundedStringGenerator(arr, 2));
+        System.out.println(Generators.UnboundedStringGenerator(arr, 5));
     }
     
 }
