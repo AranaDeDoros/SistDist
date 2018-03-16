@@ -1,0 +1,8 @@
+module HolaM
+{
+  interface Hola
+  {
+  string diHola();
+  oneway void shutdown();
+  };
+};
