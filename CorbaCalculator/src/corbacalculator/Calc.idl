@@ -1,0 +1,24 @@
+    /**
+     *
+     * @author imed & Arana De Dorós
+     */
+    module CalcApp
+    {
+      interface Addition
+      {
+        long add(in long a,in long b);
+        oneway void shutdown();
+        };
+
+      interface Sustraction{
+        long sust(in long a, in long b);
+        oneway void shutdown();};
+
+interface Multiplication{
+        long mult(in long a, in long b);
+        oneway void shutdown();};
+
+interface Division{
+        long div(in long a, in long b);
+        oneway void shutdown();};
+    };
