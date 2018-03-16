@@ -9,3 +9,8 @@
 /ClientS/nbproject/private/
 /ClientS/build/
 /ClientS/dist/
+/CorbaServer/nbproject/private/
+/CorbaClient/nbproject/private/
+/CorbaServer/build/
+/CorbaServer/dist/
+/Hello/nbproject/private/
