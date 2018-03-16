@@ -25,6 +25,21 @@ public class CalcObj extends AdditionPOA {
         int r = a + b;
         return r;
     }
+    
+        public int sust(int a, int b) {
+        int r = a - b;
+        return r;
+    }
+        
+            public int mult(int a, int b) {
+        int r = a * b;
+        return r;
+    }
+            
+                public int div(int a, int b) {
+        int r = a / b;
+        return r;
+    }
 
     // implement shutdown() method
     public void shutdown() {

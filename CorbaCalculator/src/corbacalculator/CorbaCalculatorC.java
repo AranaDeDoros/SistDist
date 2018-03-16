@@ -23,6 +23,9 @@ public class CorbaCalculatorC {
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
             Addition addobj = (Addition) AdditionHelper.narrow(ncRef.resolve_str("ABC"));
+            Division divobj = (Division) DivisionHelper.narrow(ncRef.resolve_str("ABC"));
+            Sustraction sustobj = (Sustraction) SustractionHelper.narrow(ncRef.resolve_str("ABC"));
+            Multiplication multobj = (Multiplication) MultiplicationHelper.narrow(ncRef.resolve_str("ABC"));
 
             Scanner c = new Scanner(System.in);
             System.out.println("Welcome to the addition system:");
