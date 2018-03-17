@@ -2,17 +2,12 @@ package corbacalculator;
 
 /**
  *
- * @author imed
+ * @author imed     
  */
-import CalcApp.AdditionPOA;
-import org.omg.CosNaming.*;
-import org.omg.CosNaming.NamingContextPackage.*;
+import CalcApp.CalculatorPOA;
 import org.omg.CORBA.*;
-import org.omg.PortableServer.*;
-import org.omg.PortableServer.POA;
-import java.util.Properties;
 
-public class CalcObj extends AdditionPOA {
+public class CalcObj extends CalculatorPOA {
 
     private ORB orb;
 
