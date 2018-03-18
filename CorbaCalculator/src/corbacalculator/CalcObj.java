@@ -2,12 +2,13 @@ package corbacalculator;
 
 /**
  *
- * @author imed     
+ * @author imed
  */
 import CalcApp.CalculatorPOA;
 import org.omg.CORBA.*;
 
 public class CalcObj extends CalculatorPOA {
+//Servant class, methods implementation
 
     private ORB orb;
 
@@ -15,28 +16,34 @@ public class CalcObj extends CalculatorPOA {
         orb = orb_val;
     }
 
-    // implement add() method
-    public int add(int a, int b) {
-        int r = a + b;
-        return r;
-    }
-    
-        public int sust(int a, int b) {
-        int r = a - b;
-        return r;
-    }
-        
-            public int mult(int a, int b) {
-        int r = a * b;
-        return r;
-    }
-            
-                public int div(int a, int b) {
-        int r = a / b;
+    public double add(float a, float b) {
+        double r = a + b;
         return r;
     }
 
-    // implement shutdown() method
+    public double sust(float a, float b) {
+        double r = a - b;
+        return r;
+    }
+
+    public double mult(float a, float b) {
+        float r = a * b;
+        return r;
+    }
+
+    public double div(float a, float b) {
+        float r = a / b;
+        return r;
+    }
+
+    public double fact(float a) {
+        if (a == 0) {
+            return 1;
+        } else {
+            return (a * fact(a - 1));
+        }
+    }
+
     public void shutdown() {
         orb.shutdown(false);
     }

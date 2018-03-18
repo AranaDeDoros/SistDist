@@ -6,9 +6,11 @@
     {
       interface Calculator
       {
-        long add(in long a,in long b);
-        long sust(in long a, in long b);
-        long mult(in long a, in long b);
-        long div(in long a, in long b);
+        double add(in float a,in float b);
+        double sust(in float a, in float b);
+        double mult(in float a, in float b);
+        double div(in float a, in float b);
+        double fact(in float a);
+        
         oneway void shutdown();};
-    };
+    };  

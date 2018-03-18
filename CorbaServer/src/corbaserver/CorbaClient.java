@@ -26,7 +26,7 @@ public class CorbaClient {
             String name = "Hello";
             holaImpl = HolaHelper.narrow(ncRef.resolve_str(name));
 
-            System.out.println("Obtained a handle on server object: " + holaImpl);
+          //  System.out.println("Obtained a handle on server object: " + holaImpl);
             System.out.println(holaImpl.diHola());
             holaImpl.shutdown();
 
