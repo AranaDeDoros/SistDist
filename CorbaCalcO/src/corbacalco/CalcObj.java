@@ -14,10 +14,12 @@ import org.omg.CORBA.ORB;
  *
  * @author HP
  */
-public class CalcObj extends OpsPOA{
-        
+
+public class CalcObj extends OpsPOA {
+
     private ORB orb;
-     Ops op;
+    Ops op;
+
 
     public void setORB(ORB orb_val) {
         orb = orb_val;
@@ -26,27 +28,41 @@ public class CalcObj extends OpsPOA{
     public void shutdown() {
         orb.shutdown(false);
     }
+
     @Override
     public double add(Operation op) {
-    return op.a+op.b;
+        return op.a + op.b;
     }
 
     @Override
     public double sust(Operation op) {
-    return op.a-op.b;
+        return op.a - op.b;
     }
 
     @Override
     public double mult(Operation op) {
-    return op.a*op.b;    }
+        return op.a * op.b;
+    }
 
     @Override
     public double div(Operation op) {
-    return op.a/op.b;    }
+        return op.a / op.b;
+    }
 
     @Override
     public double fact(Operation op) {
-        return op.a+op.b;
+    double res= f(op.a);
+    return res;
     }
     
-}
+    public double f(double a) {
+        if (a == 0) {
+            return 1;
+        } else {
+            return (a * f(a - 1));
+        }
+    }
+
+    }
+    
+

@@ -99,13 +99,12 @@ public class CorbaCalcOC {
                         System.out.println("Enter a:");
                         aa = c.nextLine();
                         a = Double.parseDouble(aa);
-                        b = 0;
-                        opr = new Operation(a, b);
+                        opr = new Operation(a);
                         r = calcObj.fact(opr);
                         System.out.println("The factorial of " + a + " is: " + r);
                         break;
                     case "E":
-                        //calcObj.shutdown();
+                        calcObj.shutdown();
                         System.out.println("Bye.");
                         System.exit(0);
                         break;
