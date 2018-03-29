@@ -1,0 +1,17 @@
+ // IDL
+module CalcO{
+struct Operation { 
+         double a; 
+         double b;
+         
+      };
+         
+      interface Ops { 
+        double add(in Operation op);
+        double sust(in Operation op);
+        double mult(in Operation op);
+        double div(in Operation op);
+        double fact(in Operation op); 
+        oneway void shutdown();
+      }; 
+   }; 
