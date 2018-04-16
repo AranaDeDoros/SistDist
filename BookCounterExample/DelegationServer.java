@@ -23,7 +23,7 @@ obj = orb.resolve_initial_references("RootPOA");
 rootPOA = POAHelper.narrow(obj);
 } catch (org.omg.CORBA.ORBPackage.InvalidName e) { }
 CounterPOATie c_impl = new CounterPOATie(cd);
-Counter c = c_impl._this(orb);
+Count.Counter c = c_impl._this(orb);
 try {
 FileOutputStream file =
 new FileOutputStream("Counter.ref");

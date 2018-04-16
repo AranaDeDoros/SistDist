@@ -1,7 +1,7 @@
 // CounterDelegate.java
 import javax.swing.*;
 public class CounterDelegate extends JPanel
-implements CounterOperations {
+implements Count.CounterOperations {
 private int count;
 private JTextField value;
 public CounterDelegate() {

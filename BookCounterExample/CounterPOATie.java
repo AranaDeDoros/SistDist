@@ -1,7 +1,7 @@
 // CounterPOATie.java
-public class CounterPOATie extends CounterPOA {
-private CounterOperations _impl;
-public CounterPOATie(CounterOperations delegate) {
+public class CounterPOATie extends Count.CounterPOA {
+private Count.CounterOperations _impl;
+public CounterPOATie(Count.CounterOperations delegate) {
 this._impl = delegate;
 }
 public int value() {
@@ -12,5 +12,5 @@ _impl.inc();
 }
 public void dec() {_impl.dec();
 }
-
+//...
 }

@@ -1,0 +1,11 @@
+// CounterFactory.idl
+#include "Counter.idl"
+module CFactory
+{
+interface CounterFactory
+{
+enum Kind { SHARED, UNSHARED };
+Count::Counter create(in Kind k);
+void destroy(in Count::Counter c);
+};
+};

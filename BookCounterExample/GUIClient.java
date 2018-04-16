@@ -8,7 +8,7 @@ import org.omg.CORBA.*;
 import static java.lang.System.*;
 public class GUIClient extends JPanel {
 private ORB orb;
-private Counter c;
+private Count.Counter c;
 private void initializeORB(String[] args) {
 Properties props = getProperties();
 orb = ORB.init(args, props);
@@ -58,7 +58,7 @@ public GUIClient(String[] args, String refFile) {
 initializeORB(args);
 org.omg.CORBA.Object obj = getRef(refFile);
 try {
-c = CounterHelper.narrow(obj);
+c = Count.CounterHelper.narrow(obj);
 } catch (BAD_PARAM ex) {
 out.println("Narrowing failed");
 exit(3);

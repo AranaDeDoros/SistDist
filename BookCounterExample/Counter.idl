@@ -1,7 +1,7 @@
 // Counter.idl
-interface Counter
+module Count{interface Counter
 {
 readonly attribute long value;
 void inc();
 void dec();
-};
+};};

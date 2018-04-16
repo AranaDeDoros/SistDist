@@ -23,9 +23,9 @@ if (obj == null) {
 out.println("Invalid IOR");
 exit(4);
 }
-Counter c = null;
+Count.Counter c = null;
 try {
-c = CounterHelper.narrow(obj);
+c = Count.CounterHelper.narrow(obj);
 } catch (BAD_PARAM ex) {
 out.println("Narrowing failed");
 exit(3);

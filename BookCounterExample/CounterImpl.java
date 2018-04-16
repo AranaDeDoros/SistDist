@@ -1,6 +1,5 @@
 // CounterImpl.java
-public class CounterImpl extends CounterPOA {
-private int count;
+public class CounterImpl extends Count.CounterPOA {private int count;
 public CounterImpl() {
 count = 0;
 }
