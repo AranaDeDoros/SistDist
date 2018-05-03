@@ -1,0 +1,23 @@
+// DateTimeServer.idl
+module Timer
+{
+interface TimeServer
+{
+struct Time {
+unsigned long hours;
+unsigned long minutes;
+unsigned long seconds;
+};
+Time get_time();
+};
+interface DateTimeServer : TimeServer
+{
+struct DateTime {
+unsigned long day;
+unsigned long month;
+unsigned long year;
+Time hms;
+};
+DateTime get_date_time();
+};
+};

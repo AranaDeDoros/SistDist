@@ -1,0 +1,15 @@
+// XYZ.idl
+module XYZ
+{
+interface X
+{
+void m();
+void l();
+};
+interface Y : X
+{
+};
+interface Z : Y
+{
+};
+};

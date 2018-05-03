@@ -1,0 +1,12 @@
+// TimeServer.idl
+// Version 3
+module Timer
+{
+interface TimeServer
+{
+void get_time(
+out unsigned long hours,
+out unsigned long minutes,
+out unsigned long seconds);
+};
+};

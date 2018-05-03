@@ -1,0 +1,9 @@
+Requerimientos
+Servidor
+Clientes
+Base de datos
+4 candidatos
+interfaz grafica
+log/registro de eventos
+login/identificacion
+

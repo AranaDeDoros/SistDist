@@ -1,0 +1,10 @@
+// TimeServer.idl
+// Version 2
+module Timer
+{
+interface TimeServer
+{
+unsigned long hours();
+unsigned long minutes();unsigned long seconds();
+};
+};

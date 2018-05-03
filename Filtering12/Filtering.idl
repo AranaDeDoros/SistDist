@@ -1,0 +1,22 @@
+// Filtering.idl
+module PublishSubscribe
+{
+interface Subscriber
+{
+void notify(in unsigned long value);
+};
+valuetype Filter
+{
+private Subscriber sub;
+private unsigned long min;
+private unsigned long max;
+factory init(in Subscriber s,
+in unsigned long min,
+in unsigned long max);
+void notify(in unsigned long value);
+};
+interface Publisher
+{
+void add(in Filter f);
+};
+};

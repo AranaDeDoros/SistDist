@@ -1,0 +1,16 @@
+// CBCounter.idl
+module CBCount
+{
+interface CounterClient
+{
+void update(in long value);
+};
+interface Counter
+{
+readonly attribute long value;
+void inc();
+void dec();
+void add(in CounterClient cc);
+void remove(in CounterClient cc);
+};
+};

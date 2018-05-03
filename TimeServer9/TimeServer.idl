@@ -1,0 +1,11 @@
+// TimeServer.idl
+// Version 1
+module Timer
+{
+interface TimeServer
+{
+readonly attribute unsigned long hours;
+readonly attribute unsigned long minutes;
+readonly attribute unsigned long seconds;
+};
+};
