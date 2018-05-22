@@ -1,0 +1,10 @@
+#include "auction.idl"
+module AFactory
+{
+interface AFactory
+{
+enum Kind { SHARED, UNSHARED };
+AuctionSist::AuctionOps create(in Kind k);
+void destroy(in AuctionSist::AuctionOps c);
+};
+};
