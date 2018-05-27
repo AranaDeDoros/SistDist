@@ -92,7 +92,7 @@ public class GDrive {
                     System.out.println(file.getName() + " " + file.getId() + result.getFiles().get(i));
                     if (file.getId().equals(idf)) {
                         System.out.println("lo encontré"+" ");
-                        System.exit(-1);
+                      //  System.exit(-1);
                     } else {
                         System.out.println("nel");
                     }
