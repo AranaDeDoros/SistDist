@@ -1,54 +1,31 @@
 package corbaauctionsystem;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Properties;
 import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 import static java.lang.System.*;
+import java.security.GeneralSecurityException;
 import javax.swing.*;
-import javax.imageio.ImageIO;
 
 public class CFServer {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, GeneralSecurityException {
         AuctionObject aobj;
 
         JFrame f = new JFrame();
-        JPanel p = new JPanel();
-        JPanel pN = new JPanel();
-        JPanel pS = new JPanel();
-        p.setLayout(new BorderLayout()); //lay
-        pN.setLayout(new FlowLayout());
-        pS.setLayout(new BorderLayout());
-
-        JLabel l = new JLabel("");
-        l.setText("nombre");
-        JLabel ll = new JLabel("");
-        ll.setText("prod");
-        JLabel lll = new JLabel("");
-        lll.setText("org");
-        JLabel llll = new JLabel("");
-        llll.setText("fnl");
-
-        BufferedImage image = ImageIO.read(new File("./src/img/reloj.jpg"));
-        JLabel img = new JLabel(new ImageIcon(image));
-        p.add(img);
-        pS.add(img, BorderLayout.CENTER);
-        pN.add(l);
-        pN.add(ll);
-        pN.add(lll);
-        pN.add(llll);
-        p.add(pN, BorderLayout.NORTH);
-        p.add(pS, BorderLayout.CENTER);
-
+        ServerPanel p = new ServerPanel();
+        SListener l=new SListener();
+        p.addEvents(l);
         f.setSize(700, 400);
         f.setLocation(200, 100);
         f.add(p);
         f.setTitle("CORBA");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setResizable(false);
         f.setVisible(true);
+        DB db = new DB();
+        db.connect();
 
         try {
             Properties props = getProperties();
@@ -60,7 +37,7 @@ public class CFServer {
                 rootPOA = POAHelper.narrow(obj);
             } catch (org.omg.CORBA.ORBPackage.InvalidName e) {
             }
-            CounterImpl c_impl = new CounterImpl();
+            AuctImpl c_impl = new AuctImpl();
             AuctionSist.AuctionOps c = c_impl._this(orb);
             try {
                 aobj = new AuctionObject("C", "d", 2.0, 4.0);

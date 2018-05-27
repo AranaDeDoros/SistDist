@@ -1,4 +1,4 @@
-
+package corbaauctionsystem;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -25,6 +25,16 @@ DASDSADASDAS
  */
 public class GDrive {
 
+    public GDrive(ServerPanel sp) {
+        this.sp = sp;
+    }
+
+    public GDrive(ClientPanel cp) {
+        this.cp = cp;
+    }
+    
+    
+    ServerPanel sp;ClientPanel cp;
     private static final String APPLICATION_NAME = "Google Drive API Java Quickstart";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String CREDENTIALS_FOLDER = "credentials"; // Directory to store user credentials.
@@ -57,7 +67,7 @@ public class GDrive {
         return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
     }
 
-    public static void main(String... args) throws IOException, GeneralSecurityException {
+    public void connect() throws IOException, GeneralSecurityException {
 // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
@@ -81,7 +91,8 @@ public class GDrive {
                 for (int i = 0; i < rl; i++) {
                     System.out.println(file.getName() + " " + file.getId() + result.getFiles().get(i));
                     if (file.getId().equals(idf)) {
-                        System.out.println("lo encontré");
+                        System.out.println("lo encontré"+" ");
+                        System.exit(-1);
                     } else {
                         System.out.println("nel");
                     }

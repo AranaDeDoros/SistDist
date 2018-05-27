@@ -49,12 +49,12 @@ public class CorbaAuctionSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-DB db=new DB();
-    db.connect();}
+DBZ dbD=new DBZ();
+    dbD.connect();}
     
     
 }
-    class DB{
+    class DBZ{
 
     private String[] result;
     private String z;
@@ -80,20 +80,11 @@ DB db=new DB();
         MongoClient client = new MongoClient(uri);
         MongoDatabase db = client.getDatabase(uri.getDatabase());
 
-        /*
-         * First we'll add a few songs. Nothing is required to create the
-         * songs collection; it is created automatically when we insert.
-         */
         MongoCollection<Document> songs = db.getCollection("songs");
 
         sz=db.getCollection("songs").count();
         
-        
-        
-        // Note that the insert method can take either an array or a document.
-     //   songs.insertMany(seedData);
-        
-
+      
         MongoCursor<Document> cursor = songs.find().iterator();
         String[] results;
         int i=1;
@@ -107,12 +98,8 @@ DB db=new DB();
             System.out.println(z+" "+zz+" "+zzz);
   
             } finally {
-       //     songs.drop();
-
-            //System.out.println(sz);
+            songs.drop();
+     //System.out.println(sz);
             cursor.close();
         }
-       
-
-        // Only close the connection when your app is terminating
         client.close();}}

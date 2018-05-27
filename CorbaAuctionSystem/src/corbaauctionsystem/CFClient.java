@@ -1,69 +1,32 @@
 package corbaauctionsystem;
 
 import AuctionSist.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
 import org.omg.CORBA.*;
 import static java.lang.System.*;
-import javax.imageio.ImageIO;
+import java.security.GeneralSecurityException;
 import javax.swing.*;
 
 public class CFClient {
 
     org.omg.CORBA.Object obj;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, GeneralSecurityException {
         CFServer sv;
         JFrame f = new JFrame();
-        JPanel p = new JPanel();
-        JPanel pN = new JPanel();
-        JPanel pC = new JPanel();
-        JPanel pS = new JPanel();
-        p.setLayout(new BorderLayout()); //lay
-        pN.setLayout(new FlowLayout());
-        pC.setLayout(new FlowLayout());
-        pS.setLayout(new BorderLayout());
-
-        JLabel etiquetaProd = new JLabel("prod");
-        etiquetaProd.setText("prod");
-        JLabel etiquetaClt = new JLabel("clt");
-        etiquetaClt.setText("clt");
-        JLabel etiquetaPrc = new JLabel("prc org");
-        etiquetaPrc.setText("prc org");
-        JLabel etiquetaPuja = new JLabel("prc actl");
-        etiquetaPuja.setText("prc actl");
-        JTextArea areaPuja = new JTextArea();
-        areaPuja.setColumns(10);
-        JButton botonPuja = new JButton("puja");
-        botonPuja.setName("botonPuja");
-        JButton botonQt = new JButton("abandonar");
-        botonQt.setName("quit");
-
-        pN.add(etiquetaProd);
-        pN.add(etiquetaClt);
-        pN.add(etiquetaPrc);
-        pN.add(etiquetaPuja);
-
-        pC.add(botonPuja);
-        pC.add(botonQt);
-        pC.add(areaPuja);
-
-        BufferedImage image = ImageIO.read(new File("./src/img/reloj.jpg"));
-        JLabel img = new JLabel(new ImageIcon(image));
-        pS.add(img);
-        p.add(pN, BorderLayout.NORTH);
-        p.add(pC, BorderLayout.SOUTH);
-        p.add(pS, BorderLayout.CENTER);
-
+        ClientPanel p = new ClientPanel();
+        CListener l = new CListener();
+        p.addEvents(l);
         f.setSize(700, 400);
         f.setLocation(200, 100);
         f.setTitle("CORBA Client");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.add(p);
+        f.setResizable(false);
         f.setVisible(true);
-
+        DB db = new DB();
+        db.connect();
         try {
             Properties props = getProperties();
             ORB orb = ORB.init(args, props);

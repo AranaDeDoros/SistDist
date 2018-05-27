@@ -5,11 +5,11 @@ import AuctionSist.AuctionOps;
 import AuctionSist.AuctionOpsPOA;
 import org.omg.CORBA.ORB;
 
-public class CounterImpl extends AuctionOpsPOA {
+public class AuctImpl extends AuctionOpsPOA {
     private ORB orb;
     private AuctionOps op;
 
-    public CounterImpl() {
+    public AuctImpl() {
         this.op = op;
     }
     
