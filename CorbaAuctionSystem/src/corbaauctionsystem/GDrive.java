@@ -5,6 +5,7 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.FileContent;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -32,7 +33,10 @@ public class GDrive {
     public GDrive(ClientPanel cp) {
         this.cp = cp;
     }
+
+    public GDrive() {
     
+    }
     
     ServerPanel sp;ClientPanel cp;
     private static final String APPLICATION_NAME = "Google Drive API Java Quickstart";
@@ -75,59 +79,47 @@ public class GDrive {
                 .build();
 
         // Print the names and IDs for up to 10 files.
-        FileList result = service.files().list()
-                .setPageSize(10)
-                .setFields("nextPageToken, files(id, name)")
-                .execute();
-        List<File> files = result.getFiles();
-        File idx = result.getFiles().get(0);
-        String idf = idx.getId();
-        int rl = result.size();
-        if (files == null || files.isEmpty()) {
-            System.out.println("No files found.");
-        } else {
-            System.out.println("Files:");
-            for (File file : files) {
-                for (int i = 0; i < rl; i++) {
-                    System.out.println(file.getName() + " " + file.getId() + result.getFiles().get(i));
-                    if (file.getId().equals(idf)) {
-                        System.out.println("lo encontré"+" ");
-                      //  System.exit(-1);
-                    } else {
-                        System.out.println("nel");
-                    }
-                }
-            }
-
-            System.out.println("//////////////////////////////////////////////////////////////////////////////////");
-        }
+//        FileList result = service.files().list()
+//                .setPageSize(10)
+//                .setFields("nextPageToken, files(id, name)")
+//                .execute();
+//        List<File> files = result.getFiles();
+//        File idx = result.getFiles().get(0);
+//        String idf = idx.getId();
+//        int rl = result.size();
+//        if (files == null || files.isEmpty()) {
+//            System.out.println("No files found.");
+//        } else {
+//            System.out.println("Files:");
+//            for (File file : files) {
+//                for (int i = 0; i < rl; i++) {
+//                    System.out.println(file.getName() + " " + file.getId() + result.getFiles().get(i));
+////                    if (file.getId().equals(idf)) {
+////                        System.out.println("lo encontré"+" ");
+////                      //  System.exit(-1);
+////                    } else {
+////                        System.out.println("nel");
+////                    }
+//                }
+//            }
+//
+//           // System.out.println("//////////////////////////////////////////////////////////////////////////////////");
+//        }
 
         /*File fileO = service.files().update(APPLICATION_NAME, file).execute();
     System.out.println("Archivo borrado con el ID: "+fileO.getId());
          */
         System.out.println("//////////////////////////////////////////////////////////////////////////////////");
 
-        /*
 File fileMetadata = new File();
-fileMetadata.setName("photo.jpg");
-java.io.File filePath = new java.io.File("files/photo.jpg");
-FileContent mediaContent = new FileContent("image/jpeg", filePath);
-File fileO = service.files().create(fileMetadata, mediaContent)
-   .setFields("id")
-   .execute();
-System.out.println("Archivo subido con el ID: "+fileO.getId());
-System.out.println("//////////////////////////////////////////////////////////////////////////////////");
-         */
- /*
-File fileMetadata = new File();
-fileMetadata.setName("archivo.txt");
-java.io.File filePath = new java.io.File("files/archivo.txt");
+fileMetadata.setName("log.txt");
+java.io.File filePath = new java.io.File("./log.txt");
 FileContent mediaContent = new FileContent("text/plain", filePath);
 File file = service.files().create(fileMetadata, mediaContent)
    .setFields("id")
    .execute();
 System.out.println("Archivo subido: " + file.getName()+" con el ID: "+file.getId());
-         */
+         
     }
 
 }

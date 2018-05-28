@@ -10,6 +10,8 @@ import javax.swing.*;
 
 public class CFClient {
 
+    private static String str;
+
     org.omg.CORBA.Object obj;
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
@@ -26,7 +28,7 @@ public class CFClient {
         f.setResizable(false);
         f.setVisible(true);
         DB db = new DB();
-        db.connect();
+       // db.connect();
         try {
             Properties props = getProperties();
             ORB orb = ORB.init(args, props);
@@ -61,10 +63,9 @@ public class CFClient {
             }
             int inp = -1;
             do {
-                out.print("Auction started: "
-                        + "\nAction (+/-/e)? ");
-                out.flush();
-                do {
+                str="Auction Started";
+                BackendServ.writeLog(str);
+                 do {
                     try {
                         inp = in.read();
                     } catch (IOException ioe) {

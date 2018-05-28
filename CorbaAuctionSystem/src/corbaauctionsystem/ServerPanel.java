@@ -33,7 +33,7 @@ public class ServerPanel extends javax.swing.JPanel {
         initComponents();
         panelC.add(imgLabel);
         GDrive gd = new GDrive(this);
-        gd.connect();
+        //gd.connect();
     }
 
     /**

@@ -1,0 +1,17 @@
+ServerStarted: offering d 2.0 4.0
+set price at:
+stopped auction:
+ServerStarted: offering d 2.0 4.0
+stopped auction:
+ServerStarted: offering d 2.0 4.0
+set price at:
+stopped auction:
+Auction Started
+placed a bid:
+stopped auction:
+stopped auction:
+ServerStarted: offering d 2.0 4.0
+set price at:
+Auction Started
+placed a bid:
+stopped auction:

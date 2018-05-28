@@ -10,12 +10,15 @@ import javax.swing.*;
 
 public class CFServer {
 
-    public static void main(String[] args) throws IOException, GeneralSecurityException {
+    private static String str;
+    private static String ztr;
+  
+  public static void main(String[] args) throws IOException, GeneralSecurityException {
         AuctionObject aobj;
 
         JFrame f = new JFrame();
         ServerPanel p = new ServerPanel();
-        SListener l=new SListener();
+        SListener l = new SListener();
         p.addEvents(l);
         f.setSize(700, 400);
         f.setLocation(200, 100);
@@ -24,9 +27,10 @@ public class CFServer {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
         f.setVisible(true);
-        DB db = new DB();
-        db.connect();
+//        DB db = new DB();
+//        db.connect();
 
+        
         try {
             Properties props = getProperties();
             ORB orb = ORB.init(args, props);
@@ -51,10 +55,8 @@ public class CFServer {
                 System.out.println(c.getClass());
                 writer.flush();
                 file.close();
-                out.println("Server started."
-                        + " Stop: Ctrl-C");
-                System.out.println("offering " + aobj.getName() + aobj.getOriginalPrice() + "" + aobj.getFinalPrice());
-
+                str = "ServerStarted: offering " + aobj.getName() + " " + aobj.getOriginalPrice() + " " + aobj.getFinalPrice();
+                BackendServ.writeLog(str);
             } catch (IOException ex) {
                 out.println("File error: "
                         + ex.getMessage());
