@@ -6,6 +6,7 @@ import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 import static java.lang.System.*;
 import java.security.GeneralSecurityException;
+import java.sql.Timestamp;
 import javax.swing.*;
 
 public class CFServer {
@@ -52,10 +53,10 @@ public class CFServer {
                 String ref = orb.object_to_string(c);
                 writer.println(ref);
                 System.out.println(ref);
-                System.out.println(c.getClass());
                 writer.flush();
                 file.close();
-                str = "ServerStarted: offering " + aobj.getName() + " " + aobj.getOriginalPrice() + " " + aobj.getFinalPrice();
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                str = "ServerStarted "+timestamp+"\noffering: " + aobj.getName() + " " + aobj.getOriginalPrice() + " " + aobj.getFinalPrice();
                 BackendServ.writeLog(str);
             } catch (IOException ex) {
                 out.println("File error: "

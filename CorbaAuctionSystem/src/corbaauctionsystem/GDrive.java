@@ -1,4 +1,5 @@
 package corbaauctionsystem;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -35,10 +36,11 @@ public class GDrive {
     }
 
     public GDrive() {
-    
+
     }
-    
-    ServerPanel sp;ClientPanel cp;
+
+    ServerPanel sp;
+    ClientPanel cp;
     private static final String APPLICATION_NAME = "Google Drive API Java Quickstart";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String CREDENTIALS_FOLDER = "credentials"; // Directory to store user credentials.
@@ -78,48 +80,38 @@ public class GDrive {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
-        // Print the names and IDs for up to 10 files.
-//        FileList result = service.files().list()
-//                .setPageSize(10)
-//                .setFields("nextPageToken, files(id, name)")
-//                .execute();
-//        List<File> files = result.getFiles();
-//        File idx = result.getFiles().get(0);
-//        String idf = idx.getId();
-//        int rl = result.size();
-//        if (files == null || files.isEmpty()) {
-//            System.out.println("No files found.");
-//        } else {
-//            System.out.println("Files:");
-//            for (File file : files) {
-//                for (int i = 0; i < rl; i++) {
-//                    System.out.println(file.getName() + " " + file.getId() + result.getFiles().get(i));
-////                    if (file.getId().equals(idf)) {
-////                        System.out.println("lo encontré"+" ");
-////                      //  System.exit(-1);
-////                    } else {
-////                        System.out.println("nel");
-////                    }
-//                }
-//            }
-//
-//           // System.out.println("//////////////////////////////////////////////////////////////////////////////////");
-//        }
+        String fileID = "1zy0BW0OqP_En3Myb0DzfdzfERNtToVYE";
 
-        /*File fileO = service.files().update(APPLICATION_NAME, file).execute();
-    System.out.println("Archivo borrado con el ID: "+fileO.getId());
-         */
+        try {
+            // First retrieve the file from the API.
+            File file = service.files().get("").execute();
+
+            // File's new metadata.
+            file.setName("log.txt");
+            file.setDescription("logfile");
+            file.setMimeType("text/plain");
+
+            // File's new content.
+            java.io.File fileContent = new java.io.File("./log.txt");
+            FileContent mediaContent = new FileContent("text/plain", fileContent);
+            // Send the request to the API.
+            File updatedFile = service.files().update(fileID, file, mediaContent).execute();
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e);
+        }
+
         System.out.println("//////////////////////////////////////////////////////////////////////////////////");
 
-File fileMetadata = new File();
-fileMetadata.setName("log.txt");
-java.io.File filePath = new java.io.File("./log.txt");
-FileContent mediaContent = new FileContent("text/plain", filePath);
-File file = service.files().create(fileMetadata, mediaContent)
-   .setFields("id")
-   .execute();
-System.out.println("Archivo subido: " + file.getName()+" con el ID: "+file.getId());
-         
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////");
+//
+//File fileMetadata = new File();
+//fileMetadata.setName("log.txt");
+//java.io.File filePath = new java.io.File("./log.txt");
+//FileContent mediaContent = new FileContent("text/plain", filePath);
+//File file = service.files().create(fileMetadata, mediaContent)
+//   .setFields("id")
+//   .execute();
+//System.out.println("Archivo subido: " + file.getName()+" con el ID: "+file.getId());
+//         
     }
-
 }
