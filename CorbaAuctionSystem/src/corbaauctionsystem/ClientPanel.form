@@ -76,10 +76,17 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
+        <Component class="javax.swing.JTextField" name="cName">
+          <Properties>
+            <Property name="columns" type="int" value="10"/>
+            <Property name="toolTipText" type="java.lang.String" value="Set client name"/>
+            <Property name="name" type="java.lang.String" value="cname" noResource="true"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JTextField" name="priceArea">
           <Properties>
             <Property name="columns" type="int" value="8"/>
-            <Property name="text" type="java.lang.String" value="Set a price"/>
+            <Property name="toolTipText" type="java.lang.String" value="Set a price"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bidBtn">

@@ -80,3 +80,40 @@ stopped auction:
 ServerStarted 2018-05-28 13:11:41.984
 offering: d 2.0 4.0
 stopped auction:
+ServerStarted 2018-05-31 02:31:01.754
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-31 02:55:12.884
+offering: d 2.0 4.0
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+stopped auction:
+placed a bid:
+ServerStarted 2018-05-31 15:17:46.04
+offering: d 2.0 4.0
+set price at:
+stopped auction:
+ServerStarted 2018-05-31 15:21:39.704
+offering: d 2.0 4.0
+set price at:25
+Auction Started
+placed a bid:
+Auction Started
+stopped auction:
+quit
+Auction Started
+offered:255
+Auction Started
+quit
+quit
+quit
+Auction Started
+quit
+Auction Started
+quit

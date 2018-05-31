@@ -17,6 +17,10 @@ class SListener implements ActionListener {
     ServerPanel p;
     private String str;
 
+    public SListener(ServerPanel p) {
+      this.p=p;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         JComponent origen = (JComponent) e.getSource();
@@ -41,8 +45,8 @@ class SListener implements ActionListener {
     }
 
     private void setPrice() {
-        System.out.println("set new price");
-        str = "set price at:";
+        str = "set price at:"+p.getPriceArea().getText();
+        System.out.println(str);
         {
             try {
                 BackendServ.writeLog(str);

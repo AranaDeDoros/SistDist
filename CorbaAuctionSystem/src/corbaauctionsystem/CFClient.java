@@ -15,10 +15,9 @@ public class CFClient {
     org.omg.CORBA.Object obj;
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
-        CFServer sv;
         JFrame f = new JFrame();
         ClientPanel p = new ClientPanel();
-        CListener l = new CListener();
+        CListener l = new CListener(p);
         p.addEvents(l);
         f.setSize(700, 400);
         f.setLocation(200, 100);

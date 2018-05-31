@@ -13,6 +13,8 @@ import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Projections.include;
 
 public class CorbaAuctionSystem {
+    
+    
 
     public static void main(String[] args) throws UnknownHostException {
         String rt = "";
@@ -22,10 +24,10 @@ public class CorbaAuctionSystem {
 //        // Create seed data
 //        List<Document> seedData = new ArrayList<Document>();
 //
-//        seedData.add(new Document("originalPrice", 10)
-//                .append("finalPrice", 100)
-//                .append("pname", "car")
-//                .append("client", "dasd")
+//        seedData.add(new Document("originalPrice", 1000)
+//                .append("finalPrice", 0000)
+//                .append("pname", "reloj")
+//                .append("client", "asdf")
 //        );
 //
 //        seedData.add(new Document("originalPrice", 50)

@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 public class ClientPanel extends javax.swing.JPanel {
 
     String FILE = "reloj.jpg";
-    DB db;
+    String clientName;
 
     /**
      * Creates new form ServerPanel
@@ -31,8 +31,17 @@ public class ClientPanel extends javax.swing.JPanel {
         imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/" + FILE))); // NOI18N
         initComponents();
         panelC.add(imgLabel);
-        GDrive gd = new GDrive(this);
-       // gd.connect();
+        //cargarValores();
+        // GDrive gd = new GDrive(this);
+        // gd.connect();
+
+    }
+
+    public void cargarValores() {
+        DB db = new DB();
+        this.getFnlPrice().setText(db.getNval());
+        this.getOrgPrice().setText(db.getNval_());
+        this.getProdLabel().setText(db.getKey());
     }
 
     /**
@@ -50,6 +59,7 @@ public class ClientPanel extends javax.swing.JPanel {
         fnlPrice = new javax.swing.JLabel();
         panelC = new javax.swing.JPanel();
         panelS = new javax.swing.JPanel();
+        cName = new javax.swing.JTextField();
         priceArea = new javax.swing.JTextField();
         bidBtn = new javax.swing.JButton();
         quitBtn = new javax.swing.JButton();
@@ -72,8 +82,13 @@ public class ClientPanel extends javax.swing.JPanel {
         panelC.setBorder(javax.swing.BorderFactory.createTitledBorder("Product"));
         add(panelC, java.awt.BorderLayout.CENTER);
 
+        cName.setColumns(10);
+        cName.setToolTipText("Set client name");
+        cName.setName("cname"); // NOI18N
+        panelS.add(cName);
+
         priceArea.setColumns(8);
-        priceArea.setText("Set a price");
+        priceArea.setToolTipText("Set a price");
         panelS.add(priceArea);
 
         bidBtn.setText("Bid");
@@ -90,6 +105,7 @@ public class ClientPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bidBtn;
+    private javax.swing.JTextField cName;
     private javax.swing.JLabel fnlPrice;
     private javax.swing.JLabel orgPrice;
     private javax.swing.JPanel panelC;
@@ -103,5 +119,70 @@ public class ClientPanel extends javax.swing.JPanel {
     void addEvents(CListener l) {
         quitBtn.addActionListener(l);
         bidBtn.addActionListener(l);
+        cName.addActionListener(l);
+    }
+
+    public javax.swing.JTextField getcName() {
+        return cName;
+    }
+
+    public void setcName(javax.swing.JTextField cName) {
+        this.cName = cName;
+    }
+
+    public javax.swing.JLabel getFnlPrice() {
+        return fnlPrice;
+    }
+
+    public void setFnlPrice(javax.swing.JLabel fnlPrice) {
+        this.fnlPrice = fnlPrice;
+    }
+
+    public javax.swing.JLabel getOrgPrice() {
+        return orgPrice;
+    }
+
+    public void setOrgPrice(javax.swing.JLabel orgPrice) {
+        this.orgPrice = orgPrice;
+    }
+
+    public javax.swing.JPanel getPanelC() {
+        return panelC;
+    }
+
+    public void setPanelC(javax.swing.JPanel panelC) {
+        this.panelC = panelC;
+    }
+
+    public javax.swing.JPanel getPanelN() {
+        return panelN;
+    }
+
+    public void setPanelN(javax.swing.JPanel panelN) {
+        this.panelN = panelN;
+    }
+
+    public javax.swing.JPanel getPanelS() {
+        return panelS;
+    }
+
+    public void setPanelS(javax.swing.JPanel panelS) {
+        this.panelS = panelS;
+    }
+
+    public javax.swing.JTextField getPriceArea() {
+        return priceArea;
+    }
+
+    public void setPriceArea(javax.swing.JTextField priceArea) {
+        this.priceArea = priceArea;
+    }
+
+    public javax.swing.JLabel getProdLabel() {
+        return prodLabel;
+    }
+
+    public void setProdLabel(javax.swing.JLabel prodLabel) {
+        this.prodLabel = prodLabel;
     }
 }

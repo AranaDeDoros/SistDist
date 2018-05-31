@@ -79,7 +79,7 @@
         <Component class="javax.swing.JTextField" name="priceArea">
           <Properties>
             <Property name="columns" type="int" value="8"/>
-            <Property name="text" type="java.lang.String" value="Set a price"/>
+            <Property name="toolTipText" type="java.lang.String" value="Set an offer"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="acptBtn">

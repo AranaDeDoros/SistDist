@@ -19,7 +19,7 @@ public class CFServer {
 
         JFrame f = new JFrame();
         ServerPanel p = new ServerPanel();
-        SListener l = new SListener();
+        SListener l = new SListener(p);
         p.addEvents(l);
         f.setSize(700, 400);
         f.setLocation(200, 100);

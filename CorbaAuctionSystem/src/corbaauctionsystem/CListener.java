@@ -1,4 +1,3 @@
-
 package corbaauctionsystem;
 
 import java.awt.event.ActionEvent;
@@ -15,7 +14,19 @@ import javax.swing.JComponent;
 class CListener implements ActionListener {
 
     ServerPanel p;
+    ClientPanel c;
+
     private String str;
+    private String us;
+
+    private DB db;
+
+    public CListener(ClientPanel c) {
+        this.c = c;
+    }
+
+    public CListener() {
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -27,15 +38,17 @@ class CListener implements ActionListener {
             case "qact":
                 quit();
                 break;
+            case "cname":
+                sendUser();
+                break;
             default:
                 System.out.println("none");
         }
     }
 
     private void setPrice() {
-        System.out.println("bid");
-        str = "placed a bid:";
-        {
+        str = "offered:"+c.getPriceArea().getText();
+        System.out.println(str);       {
             try {
                 BackendServ.writeLog(str);
             } catch (IOException ex) {
@@ -45,14 +58,28 @@ class CListener implements ActionListener {
     }
 
     private void quit() {
-        str = "stopped auction:";
-        System.out.println(str);
+        str="quit";
+        System.out.println("quit");
         {
             try {
                 BackendServ.writeLog(str);
             } catch (IOException ex) {
                 Logger.getLogger(SListener.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        System.exit(0);
+    }
+
+    private void sendUser() {
+        us = c.getcName().getText();
+        str = "client name set to " + us;
+        System.out.println(str);
+        DB db = new DB();
+        db.createClient(us);
+        try {
+            BackendServ.writeLog(str);
+        } catch (IOException ex) {
+            Logger.getLogger(SListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

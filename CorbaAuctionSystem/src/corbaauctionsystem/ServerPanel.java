@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 public class ServerPanel extends javax.swing.JPanel {
 
     String FILE = "reloj.jpg";
-    DB db;
+    
 
     /**
      * Creates new form ServerPanel
@@ -33,9 +33,16 @@ public class ServerPanel extends javax.swing.JPanel {
         initComponents();
         panelC.add(imgLabel);
         GDrive gd = new GDrive(this);
-        //gd.connect();
+        cargarValores();
     }
-
+    
+    public void cargarValores() {
+        DB db = new DB();
+        this.getFnlPrice().setText(db.getNval());
+        this.getOrgPrice().setText(db.getNval_());
+        this.getProdLabel().setText(db.getKey());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,7 +81,7 @@ public class ServerPanel extends javax.swing.JPanel {
         add(panelC, java.awt.BorderLayout.CENTER);
 
         priceArea.setColumns(8);
-        priceArea.setText("Set a price");
+        priceArea.setToolTipText("Set an offer");
         panelS.add(priceArea);
 
         acptBtn.setText("Set Price");
