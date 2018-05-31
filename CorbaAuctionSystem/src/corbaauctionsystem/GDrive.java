@@ -7,6 +7,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.FileContent;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -14,7 +16,6 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
-import com.google.api.services.drive.model.FileList;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -80,8 +81,10 @@ public class GDrive {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
+        //log
         String fileID = "1zy0BW0OqP_En3Myb0DzfdzfERNtToVYE";
-
+        //reloj
+        String fileR = "1-gwmxXic8TWYmDZmB_kPZgzh5o8cKSa6";
         try {
             // First retrieve the file from the API.
             File file = service.files().get("").execute();
@@ -103,15 +106,47 @@ public class GDrive {
         System.out.println("//////////////////////////////////////////////////////////////////////////////////");
 
         System.out.println("//////////////////////////////////////////////////////////////////////////////////");
-//
-//File fileMetadata = new File();
-//fileMetadata.setName("log.txt");
-//java.io.File filePath = new java.io.File("./log.txt");
-//FileContent mediaContent = new FileContent("text/plain", filePath);
-//File file = service.files().create(fileMetadata, mediaContent)
-//   .setFields("id")
-//   .execute();
-//System.out.println("Archivo subido: " + file.getName()+" con el ID: "+file.getId());
-//         
+    }
+
+    public static InputStream downloadFile() throws IOException, GeneralSecurityException {
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        //reloj
+        String fileR = "1-gwmxXic8TWYmDZmB_kPZgzh5o8cKSa6";
+     
+        File file = service.files().get(fileR).execute();
+
+        System.out.println(file.getWebViewLink());
+        if (file.getWebViewLink() != null && file.getWebContentLink().length() > 0) {
+            try {
+                HttpResponse resp
+                        = service.getRequestFactory().buildGetRequest(new GenericUrl(""))
+                                .execute();
+                return resp.getContent();
+            } catch (IOException e) {
+                // An error occurred.
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            // The file doesn't have any content stored on Drive.
+            return null;
+        }
+    }
+
+    public void upload() throws GeneralSecurityException, IOException {
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        File fileMetadata = new File();
+        fileMetadata.setName("reloj.jpg");
+        java.io.File filePath = new java.io.File("./src/img/reloj.jpg");
+        FileContent mediaContent = new FileContent("text/plain", filePath);
+        File filez = service.files().create(fileMetadata, mediaContent).setFields("id").execute();
+        System.out.println("Archivo subido con el ID: " + filez.getId());
     }
 }

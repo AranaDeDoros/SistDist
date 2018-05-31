@@ -64,7 +64,8 @@ class SListener implements ActionListener {
             }
         }
         GDrive drive = new GDrive();
-        drive.connect();
+        //GDrive.downloadFile();
+drive.connect();
     }
 
 }

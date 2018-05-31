@@ -17,3 +17,66 @@ set price at:
 set price at:
 set price at:
 stopped auction:
+ServerStarted 2018-05-28 02:23:07.052
+offering: d 2.0 4.0
+set price at:
+set price at:
+set price at:
+set price at:
+stopped auction:
+ServerStarted 2018-05-28 12:28:33.039
+offering: d 2.0 4.0
+stopped auction:
+set price at:
+ServerStarted 2018-05-28 12:29:27.406
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:31:55.56
+offering: d 2.0 4.0
+set price at:
+set price at:
+stopped auction:
+ServerStarted 2018-05-28 12:32:50.203
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:34:02.414
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:36:17.065
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:37:26.868
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:39:20.232
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:39:39.865
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:48:03.887
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:49:03.359
+offering: d 2.0 4.0
+ServerStarted 2018-05-28 12:49:28.156
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:52:35.515
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:54:42.938
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:55:33.362
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 12:56:39.56
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 13:02:50.99
+offering: d 2.0 4.0
+stopped auction:
+ServerStarted 2018-05-28 13:11:41.984
+offering: d 2.0 4.0
+stopped auction:

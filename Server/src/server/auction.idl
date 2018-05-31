@@ -1,0 +1,22 @@
+
+// CBCounter.idl
+module AuctionSist
+{
+interface AuctionClient
+{
+void update(in long value);
+void quit();
+
+};
+
+interface Auction
+{
+readonly attribute double originalPrice;
+readonly attribute double finalPrice;
+readonly attribute string name;
+readonly attribute string client;
+void bid();
+void add(in AuctionClient cc);
+void remove(in AuctionClient cc);
+};
+};
