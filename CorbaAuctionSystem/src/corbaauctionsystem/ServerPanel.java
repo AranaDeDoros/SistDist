@@ -37,10 +37,11 @@ public class ServerPanel extends javax.swing.JPanel {
     }
     
     public void cargarValores() {
-        DB db = new DB();
-        this.getFnlPrice().setText(db.getNval());
-        this.getOrgPrice().setText(db.getNval_());
-        this.getProdLabel().setText(db.getKey());
+        DB db = new DB(this);
+        db.connect();
+        this.getProdLabel().setText(db.getValue());
+        this.getFnlPrice().setText(db.getFnlPrice());
+        this.getOrgPrice().setText(db.getiPrice());
     }
     
     /**

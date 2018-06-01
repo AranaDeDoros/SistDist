@@ -31,17 +31,18 @@ public class ClientPanel extends javax.swing.JPanel {
         imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/" + FILE))); // NOI18N
         initComponents();
         panelC.add(imgLabel);
-        //cargarValores();
+        cargarValores();
         // GDrive gd = new GDrive(this);
         // gd.connect();
 
     }
 
     public void cargarValores() {
-        DB db = new DB();
-        this.getFnlPrice().setText(db.getNval());
-        this.getOrgPrice().setText(db.getNval_());
-        this.getProdLabel().setText(db.getKey());
+        DB db = new DB(this);
+        db.connect();
+        this.getProdLabel().setText(db.getValue());
+        this.getFnlPrice().setText(db.getFnlPrice());
+        this.getOrgPrice().setText(db.getiPrice());
     }
 
     /**
@@ -59,6 +60,7 @@ public class ClientPanel extends javax.swing.JPanel {
         fnlPrice = new javax.swing.JLabel();
         panelC = new javax.swing.JPanel();
         panelS = new javax.swing.JPanel();
+        eitquetaClt = new javax.swing.JLabel();
         cName = new javax.swing.JTextField();
         priceArea = new javax.swing.JTextField();
         bidBtn = new javax.swing.JButton();
@@ -81,6 +83,9 @@ public class ClientPanel extends javax.swing.JPanel {
 
         panelC.setBorder(javax.swing.BorderFactory.createTitledBorder("Product"));
         add(panelC, java.awt.BorderLayout.CENTER);
+
+        eitquetaClt.setText("Client Name");
+        panelS.add(eitquetaClt);
 
         cName.setColumns(10);
         cName.setToolTipText("Set client name");
@@ -106,6 +111,7 @@ public class ClientPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bidBtn;
     private javax.swing.JTextField cName;
+    private javax.swing.JLabel eitquetaClt;
     private javax.swing.JLabel fnlPrice;
     private javax.swing.JLabel orgPrice;
     private javax.swing.JPanel panelC;

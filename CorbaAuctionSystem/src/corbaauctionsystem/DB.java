@@ -1,5 +1,6 @@
 package corbaauctionsystem;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -22,12 +23,12 @@ public class DB {
     
     ServerPanel p;
      ClientPanel c;
-    private String val;
+    private String iPrice;
     private String value;
     private String key;
-    private String nval;
-    private String val_;
-    private String nval_;
+    private String fnlPrice;
+    private String orgP;
+    private String fnlP;
     
     public DB(){
         
@@ -67,8 +68,8 @@ public class DB {
         MongoCollection<Document> products = db.getCollection("prdcts");
 
         //  products.insertMany(seedData);
-        FindIterable<Document> f = products.find(eq("pname", "car")).projection(fields(include("originalPrice", "finalPrice"), excludeId()));
-        FindIterable<Document> ff = products.find(eq("pname", "car")).projection(fields(include("pname"), excludeId()));
+        FindIterable<Document> f = products.find(eq("pname", "Reloj Segundo Imperio")).projection(fields(include("originalPrice", "finalPrice"), excludeId()));
+        FindIterable<Document> ff = products.find(eq("pname", "Reloj Segundo Imperio")).projection(fields(include("pname"), excludeId()));
 
         MongoCursor<Document> cursor = f.iterator();
         MongoCursor<Document> cursorf = ff.iterator();
@@ -89,30 +90,30 @@ public class DB {
             cursorf.close();
         }
 
-        System.out.println(first);
+        //System.out.println(first);
         String product;
         product = first.replaceAll("\\{|\\}|\"|:|", "").trim().replaceAll("  ", " ");
-        System.out.println(product);
+        //System.out.println(product);
         String values[] = product.split("pname");
          key = product.substring(0, 5);
          value = values[1].trim();
         System.out.println(key); //key
         System.out.println(value); //value
 
-        System.out.println("fuera" + second);
+        //System.out.println("fuera" + second);
         String prices;
         prices = second.replaceAll("\\{|\\}|\"|:|,", "").trim().replaceAll("  ", "");
-        System.out.println(prices);
+        //System.out.println(prices);
         String oPrice[] = prices.split("\\D+");
         String fPrice[] = prices.split("\\d+");
-        val=oPrice[1];
-        nval=oPrice[2];
-        val_=fPrice[0];
-        nval_=fPrice[1].trim();
-        System.out.println(val);
-        System.out.println(nval);
-        System.out.println(val_);
-        System.out.println(nval_);
+        iPrice=oPrice[1];
+        fnlPrice=oPrice[2];
+        orgP=fPrice[0];
+        fnlP=fPrice[1].trim();
+        System.out.println(iPrice);
+        System.out.println(fnlPrice);
+        System.out.println(orgP);
+        System.out.println(fnlP);
 
         //products.drop();
         client.close();
@@ -138,12 +139,41 @@ public class DB {
         client.close();
     }
 
-    public String getVal() {
-        return val;
+    public void sendProductData(String pname, String orgP) {
+      // Create seed data
+        List<Document> seedData = new ArrayList<Document>();
+
+  //      seedData.add(new Document("name", pname));
+//        seedData.add(new Document("name", username));
+//        seedData.add(new Document("name", username));
+
+        // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
+        MongoClientURI uri = new MongoClientURI("mongodb://tomo:tomo@ds257495.mlab.com:57495/auctionssystcorba");
+        MongoClient prdcts = new MongoClient(uri);
+        MongoDatabase db = prdcts.getDatabase(uri.getDatabase());
+
+        MongoCollection<Document> products = db.getCollection("prdcts");
+      
+        Document query = new Document();
+        query.append("pname",pname);
+        Document setData = new Document();
+        setData.append("originalPrice", orgP);
+        Document update = new Document();
+        update.append("$set", setData);
+        products.updateOne(query,update);
+                
+        
+//        clients.insertMany(seedData);
+        //products.drop();
+        prdcts.close();
     }
 
-    public void setVal(String val) {
-        this.val = val;
+    public String getiPrice() {
+        return iPrice;
+    }
+
+    public void setiPrice(String iPrice) {
+        this.iPrice = iPrice;
     }
 
     public String getValue() {
@@ -162,28 +192,28 @@ public class DB {
         this.key = key;
     }
 
-    public String getNval() {
-        return nval;
+    public String getFnlPrice() {
+        return fnlPrice;
     }
 
-    public void setNval(String nval) {
-        this.nval = nval;
+    public void setFnlPrice(String fnlPrice) {
+        this.fnlPrice = fnlPrice;
     }
 
-    public String getVal_() {
-        return val_;
+    public String getOrgP() {
+        return orgP;
     }
 
-    public void setVal_(String val_) {
-        this.val_ = val_;
+    public void setOrgP(String orgP) {
+        this.orgP = orgP;
     }
 
-    public String getNval_() {
-        return nval_;
+    public String getFnlP() {
+        return fnlP;
     }
 
-    public void setNval_(String nval_) {
-        this.nval_ = nval_;
+    public void setFnlP(String fnlP) {
+        this.fnlP = fnlP;
     }
 
 }

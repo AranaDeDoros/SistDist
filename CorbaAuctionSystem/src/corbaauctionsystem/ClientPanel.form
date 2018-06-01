@@ -76,6 +76,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="eitquetaClt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Client Name"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JTextField" name="cName">
           <Properties>
             <Property name="columns" type="int" value="10"/>

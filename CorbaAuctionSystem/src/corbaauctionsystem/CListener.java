@@ -55,6 +55,8 @@ class CListener implements ActionListener {
                 Logger.getLogger(SListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+         DB db = new DB();
+         db.sendProductData(c.getProdLabel().getText(),c.getPriceArea().getText()); 
     }
 
     private void quit() {

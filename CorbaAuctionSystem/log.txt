@@ -117,3 +117,25 @@ Auction Started
 quit
 Auction Started
 quit
+ServerStarted 2018-06-01 10:42:57.131
+offering: d 2.0 4.0
+set price at:250
+ServerStarted 2018-06-01 10:44:16.976
+offering: d 2.0 4.0
+Auction Started
+Auction Started
+offered:
+offered:
+offered:254
+client name set to orewa
+quit
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+Auction Started
+ServerStarted 2018-06-01 11:07:55.761
+offering: d 2.0 4.0
+Auction Started
+quit
