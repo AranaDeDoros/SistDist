@@ -38,12 +38,12 @@ public class AuctionImpl extends AuctionPOA {
 
     @Override
     public String setName(String name) {
-        return "Reloj Segundo Imperio";
+        return name;
     }
 
     @Override
     public String setClient(String client) {
-        return "ClienteJ";
+        return client;
     }
 
     @Override

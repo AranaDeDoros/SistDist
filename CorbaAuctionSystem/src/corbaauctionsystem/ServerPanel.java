@@ -60,7 +60,8 @@ public class ServerPanel extends javax.swing.JPanel {
         panelC = new javax.swing.JPanel();
         panelS = new javax.swing.JPanel();
         priceArea = new javax.swing.JTextField();
-        acptBtn = new javax.swing.JButton();
+        setPrice = new javax.swing.JButton();
+        btnAcpt = new javax.swing.JButton();
         stopAuct = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
@@ -85,9 +86,13 @@ public class ServerPanel extends javax.swing.JPanel {
         priceArea.setToolTipText("Set an offer");
         panelS.add(priceArea);
 
-        acptBtn.setText("Set Price");
-        acptBtn.setName("setprice"); // NOI18N
-        panelS.add(acptBtn);
+        setPrice.setText("Set Price");
+        setPrice.setName("setprice"); // NOI18N
+        panelS.add(setPrice);
+
+        btnAcpt.setText("Accept");
+        btnAcpt.setName("acpt"); // NOI18N
+        panelS.add(btnAcpt);
 
         stopAuct.setText("Stop Auction");
         stopAuct.setName("stop"); // NOI18N
@@ -98,7 +103,7 @@ public class ServerPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton acptBtn;
+    private javax.swing.JButton btnAcpt;
     private javax.swing.JLabel fnlPrice;
     private javax.swing.JLabel orgPrice;
     private javax.swing.JPanel panelC;
@@ -106,12 +111,14 @@ public class ServerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel panelS;
     private javax.swing.JTextField priceArea;
     private javax.swing.JLabel prodLabel;
+    private javax.swing.JButton setPrice;
     private javax.swing.JButton stopAuct;
     // End of variables declaration//GEN-END:variables
 
     void addEvents(SListener l) {
-        acptBtn.addActionListener(l);
+        setPrice.addActionListener(l);
         stopAuct.addActionListener(l);
+        btnAcpt.addActionListener(l);
     }
 
     public javax.swing.JLabel getFnlPrice() {
@@ -144,5 +151,13 @@ public class ServerPanel extends javax.swing.JPanel {
 
     public void setProdLabel(javax.swing.JLabel prodLabel) {
         this.prodLabel = prodLabel;
+    }
+
+    public javax.swing.JButton getBtnAcpt() {
+        return btnAcpt;
+    }
+
+    public void setBtnAcpt(javax.swing.JButton btnAcpt) {
+        this.btnAcpt = btnAcpt;
     }
 }

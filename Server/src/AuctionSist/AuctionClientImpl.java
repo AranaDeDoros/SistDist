@@ -13,8 +13,9 @@ public class AuctionClientImpl extends AuctionClientPOA {
     
 public void update(int value) {
 System.out.println("Server information. "
-+ "New Counter value: " + value);
++ "New offer: " + value);
 }
     
-public void quit(){}
+public void quit(){
+    System.out.println("Quit the auction");}
 }

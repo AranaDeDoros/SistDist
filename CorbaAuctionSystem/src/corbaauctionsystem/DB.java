@@ -139,7 +139,7 @@ public class DB {
         client.close();
     }
 
-    public void sendProductData(String pname, String orgP) {
+    public void sendProductData(String pname, String fnlP) {
       // Create seed data
         List<Document> seedData = new ArrayList<Document>();
 
@@ -157,7 +157,7 @@ public class DB {
         Document query = new Document();
         query.append("pname",pname);
         Document setData = new Document();
-        setData.append("originalPrice", orgP);
+        setData.append("finalPrice", fnlP);
         Document update = new Document();
         update.append("$set", setData);
         products.updateOne(query,update);

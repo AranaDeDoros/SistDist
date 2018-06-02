@@ -1,5 +1,7 @@
 package corbaauctionsystem;
 
+import AuctionSist.Auction;
+import AuctionSist.AuctionImpl;
 import java.io.*;
 import java.util.Properties;
 import org.omg.CORBA.*;
@@ -13,8 +15,53 @@ public class CFServer {
 
     private static String str;
     private static String ztr;
-  
-  public static void main(String[] args) throws IOException, GeneralSecurityException {
+    private ORB orb;
+    private POA rootPOA;
+
+    private void initializeORB(String[] args) {
+        Properties props = getProperties();
+        orb = ORB.init(args, props);
+        try {
+            rootPOA = POAHelper.narrow(orb.
+                    resolve_initial_references("RootPOA"));
+        } catch (org.omg.CORBA.ORBPackage.InvalidName ex) {
+        }
+    }
+
+    private void putRef(org.omg.CORBA.Object obj,
+            String refFile) {
+        try {
+            FileOutputStream file
+                    = new FileOutputStream(refFile);
+            PrintWriter writer = new PrintWriter(file);
+            String ref = orb.object_to_string(obj);
+            writer.println(ref);
+            writer.flush();
+            file.close();
+            out.println("Server started. Stop: Ctrl-C");
+        } catch (IOException ex) {
+            out.println("File error: "
+                    + ex.getMessage());
+            exit(2);
+        }
+    }
+
+    public CFServer(String[] args, String refFile) {
+        try {
+            initializeORB(args);
+            AuctionImpl c_impl = new AuctionImpl();
+            Auction c = c_impl._this(orb);
+            putRef(c, refFile);
+            rootPOA.the_POAManager().activate();
+            orb.run();
+        } catch (Exception ex) {
+            out.println("Exception: "
+                    + ex.getMessage());
+            exit(1);
+        }
+    }
+
+    public static void main(String[] args) throws IOException, GeneralSecurityException {
         AuctionObject aobj;
 
         JFrame f = new JFrame();
@@ -28,47 +75,15 @@ public class CFServer {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
         f.setVisible(true);
-//        DB db = new DB();
-//        db.connect();
 
-        
-        try {
-            Properties props = getProperties();
-            ORB orb = ORB.init(args, props);
-            org.omg.CORBA.Object obj = null;
-            POA rootPOA = null;
-            try {
-                obj = orb.resolve_initial_references("RootPOA");
-                rootPOA = POAHelper.narrow(obj);
-            } catch (org.omg.CORBA.ORBPackage.InvalidName e) {
-            }
-            AuctImpl c_impl = new AuctImpl();
-            AuctionSist.AuctionOps c = c_impl._this(orb);
-            try {
-                aobj = new AuctionObject("C", "d", 2.0, 4.0);
-                aobj.getObj(aobj);
-                FileOutputStream file
-                        = new FileOutputStream("Counter.ref");
-                PrintWriter writer = new PrintWriter(file);
-                String ref = orb.object_to_string(c);
-                writer.println(ref);
-                System.out.println(ref);
-                writer.flush();
-                file.close();
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                str = "ServerStarted "+timestamp+"\noffering: " + aobj.getName() + " " + aobj.getOriginalPrice() + " " + aobj.getFinalPrice();
-                BackendServ.writeLog(str);
-            } catch (IOException ex) {
-                out.println("File error: "
-                        + ex.getMessage());
-                exit(2);
-            }
-            rootPOA.the_POAManager().activate();
-            orb.run();
-        } catch (Exception ex) {
-            out.println("Exception: " + ex.getMessage());
-            exit(1);
-        }
+        aobj = new AuctionObject("C", "d", 2.0, 4.0);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        str = "ServerStarted " + timestamp;
+        BackendServ.writeLog(str);
+        ztr = "offering: " + aobj.getName() + " " + aobj.getOriginalPrice() + " " + aobj.getFinalPrice();
+        BackendServ.writeLog(ztr);
+        String refFile = "CBCounter.ref";
+        new CFServer(args, refFile);
 
     }
 

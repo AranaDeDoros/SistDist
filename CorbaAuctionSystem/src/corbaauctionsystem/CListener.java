@@ -33,7 +33,7 @@ class CListener implements ActionListener {
         JComponent origen = (JComponent) e.getSource();
         switch (origen.getName()) {
             case "bid":
-                setPrice();
+                setBid();
                 break;
             case "qact":
                 quit();
@@ -46,8 +46,8 @@ class CListener implements ActionListener {
         }
     }
 
-    private void setPrice() {
-        str = "offered:"+c.getPriceArea().getText();
+    private void setBid() {
+        str = us+" offered:"+c.getPriceArea().getText();
         System.out.println(str);       {
             try {
                 BackendServ.writeLog(str);
@@ -55,13 +55,14 @@ class CListener implements ActionListener {
                 Logger.getLogger(SListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-         DB db = new DB();
-         db.sendProductData(c.getProdLabel().getText(),c.getPriceArea().getText()); 
+//         DB db = new DB();
+//         db.sendProductData(c.getProdLabel().getText(),c.getPriceArea().getText()); 
+// 
     }
 
     private void quit() {
-        str="quit";
-        System.out.println("quit");
+        str=us+" quit";
+        System.out.println("Client quit.");
         {
             try {
                 BackendServ.writeLog(str);
