@@ -59,13 +59,15 @@ public class CFServer {
                     + ex.getMessage());
             exit(1);
         }
+
     }
+    
+         
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
-        AuctionObject aobj;
-
         JFrame f = new JFrame();
         ServerPanel p = new ServerPanel();
+        ClientPanel cltp=new ClientPanel();
         SListener l = new SListener(p);
         p.addEvents(l);
         f.setSize(700, 400);
@@ -76,15 +78,19 @@ public class CFServer {
         f.setResizable(false);
         f.setVisible(true);
 
-        aobj = new AuctionObject("C", "d", 2.0, 4.0);
+        DB db = new DB();
+        db.connect();
+
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         str = "ServerStarted " + timestamp;
         BackendServ.writeLog(str);
-        ztr = "offering: " + aobj.getName() + " " + aobj.getOriginalPrice() + " " + aobj.getFinalPrice();
+        ztr = "Offering " + db.getValue() + " initial price: " + db.getiPrice() + " current offer: " + db.getFnlPrice();
         BackendServ.writeLog(ztr);
         String refFile = "CBCounter.ref";
-        new CFServer(args, refFile);
+       new CFServer(args, refFile);
 
+    
+    //////////SOCKET
     }
-
 }
+

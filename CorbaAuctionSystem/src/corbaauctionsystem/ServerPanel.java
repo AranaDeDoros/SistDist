@@ -88,6 +88,7 @@ public class ServerPanel extends javax.swing.JPanel {
 
         setPrice.setText("Set Price");
         setPrice.setName("setprice"); // NOI18N
+        setPrice.setVisible(false);
         panelS.add(setPrice);
 
         btnAcpt.setText("Accept");
@@ -115,7 +116,7 @@ public class ServerPanel extends javax.swing.JPanel {
     private javax.swing.JButton stopAuct;
     // End of variables declaration//GEN-END:variables
 
-    void addEvents(SListener l) {
+    public void addEvents(SListener l) {
         setPrice.addActionListener(l);
         stopAuct.addActionListener(l);
         btnAcpt.addActionListener(l);

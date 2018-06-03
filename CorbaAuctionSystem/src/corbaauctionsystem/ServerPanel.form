@@ -87,6 +87,9 @@
             <Property name="text" type="java.lang.String" value="Set Price"/>
             <Property name="name" type="java.lang.String" value="setprice" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="setPrice.setVisible(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnAcpt">
           <Properties>

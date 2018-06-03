@@ -97,8 +97,8 @@ public class DB {
         String values[] = product.split("pname");
          key = product.substring(0, 5);
          value = values[1].trim();
-        System.out.println(key); //key
-        System.out.println(value); //value
+//        System.out.println(key); //key
+//        System.out.println(value); //value
 
         //System.out.println("fuera" + second);
         String prices;
@@ -110,10 +110,10 @@ public class DB {
         fnlPrice=oPrice[2];
         orgP=fPrice[0];
         fnlP=fPrice[1].trim();
-        System.out.println(iPrice);
-        System.out.println(fnlPrice);
-        System.out.println(orgP);
-        System.out.println(fnlP);
+//        System.out.println(iPrice);
+//        System.out.println(fnlPrice);
+//        System.out.println(orgP);
+//        System.out.println(fnlP);
 
         //products.drop();
         client.close();

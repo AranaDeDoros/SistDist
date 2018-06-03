@@ -1,14 +1,4 @@
-ServerStarted 2018-06-02 12:49:28.361
-offering: d 2.0 4.0
-set price at:50000
-Auction Started
-Reloj Segundo Imperio20000.0 ClienteJ Offered: 20000.0
-null offered:258488
-null quit
-ServerStarted 2018-06-02 12:55:31.353
-offering: d 2.0 4.0
-Auction Started
-Reloj Segundo Imperio20000.0 ClienteJ Offered: 20000.0
-client name set to el
-el offered:100000
-el quit
+stopped auction:
+ServerStarted 2018-06-03 18:01:03.417
+Offering Reloj Segundo Imperio initial price: 25555 current offer: 80000
+Accepted: 0 from Client
