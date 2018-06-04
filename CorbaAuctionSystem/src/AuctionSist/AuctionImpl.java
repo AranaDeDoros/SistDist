@@ -5,6 +5,7 @@
  */
 package AuctionSist;
 
+import corbaauctionsystem.DB;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,12 @@ public class AuctionImpl extends AuctionPOA {
     private List<AuctionClient> clients
             = new ArrayList<AuctionClient>();
 
+    
     public AuctionImpl() {
-        originalPrice=20000;
+    
+        DB db = new DB();
+        db.connect();
+        originalPrice=Integer.parseInt(db.getiPrice());
         finalPrice =originalPrice;
     _notify();
     }
@@ -48,7 +53,7 @@ public class AuctionImpl extends AuctionPOA {
 
     @Override
     public void bid(int bid) {
-        finalPrice+=bid;
+        finalPrice=bid;
         _notify();
     }
 

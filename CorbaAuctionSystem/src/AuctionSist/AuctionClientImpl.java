@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class AuctionClientImpl extends AuctionClientPOA {
 String str;    
 public void update(int value) {
- str="Server information."+ " New offer: " + value;
+ str="Server information."+ " Now at: " + value;
     System.out.println(str);
     try {
         BackendServ.writeLog(str);

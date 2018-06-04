@@ -32,7 +32,7 @@ public class CFClient {
         f.setResizable(false);
         f.setVisible(true);
         //corbaC cc=new corbaC(p);
-        //corbaC.main(args);
+        corbaC.main(args,p);
     }
 
 }

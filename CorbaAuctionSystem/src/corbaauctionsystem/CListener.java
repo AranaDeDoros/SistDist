@@ -21,7 +21,7 @@ import org.omg.PortableServer.POAHelper;
  *
  * @author HP
  */
-final class CListener implements ActionListener {
+class CListener implements ActionListener {
 
     ServerPanel p;
     ClientPanel c;
@@ -33,6 +33,24 @@ final class CListener implements ActionListener {
 
     public CListener(ClientPanel c) {
         this.c = c;
+//               try {
+//            initializeORB(null);
+//            org.omg.CORBA.Object obj = getRef(refFile);
+//            Auction cl = AuctionHelper.narrow(obj);
+//            AuctionClientImpl cc_impl
+//                    = new AuctionClientImpl();
+//            AuctionClient cc = cc_impl._this(orb);
+//            rootPOA.the_POAManager().activate();
+//            businessLogic(cl, cc);
+//            orb.run();
+//        } catch (BAD_PARAM ex) {
+//            out.println("Narrowing failed");
+//            exit(3);
+//        } catch (Exception ex) {
+//            out.println("Exception: "
+//                    + ex.getMessage());
+//            exit(1);
+//        }
     }
 
     @Override
@@ -55,7 +73,7 @@ final class CListener implements ActionListener {
 
     private void setBid() {
         
-        str = us + " offered:" + c.getPriceArea().getText();
+        str = c.getcName().getText() + " offered:" + c.getPriceArea().getText();
         System.out.println(str);
         {
             try {
@@ -64,13 +82,15 @@ final class CListener implements ActionListener {
                 Logger.getLogger(SListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        c.getcName().setEditable(false);
+        c.getFnlPrice().setText(c.getPriceArea().getText());
 //         DB db = new DB();
 //         db.sendProductData(c.getProdLabel().getText(),c.getPriceArea().getText()); 
 // 
     }
 
     private void quit() {
-        str = us + " quit";
+        str = c.getcName().getText() + " quit";
         System.out.println("Client quit.");
         {
             try {
@@ -169,30 +189,4 @@ final class CListener implements ActionListener {
         }).start();
     }
 
-    public CListener(String[] args, String refFile) {
-        try {
-            initializeORB(args);
-            org.omg.CORBA.Object obj = getRef(refFile);
-            Auction c = AuctionHelper.narrow(obj);
-            AuctionClientImpl cc_impl
-                    = new AuctionClientImpl();
-            AuctionClient cc = cc_impl._this(orb);
-            rootPOA.the_POAManager().activate();
-            businessLogic(c, cc);
-            orb.run();
-        } catch (BAD_PARAM ex) {
-            out.println("Narrowing failed");
-            exit(3);
-        } catch (Exception ex) {
-            out.println("Exception: "
-                    + ex.getMessage());
-            exit(1);
-        }
-    }
-
-    public static void main(String[] args) throws IOException, GeneralSecurityException {
-
-        String refFile = "CBCounter.ref";
-        new CListener(args, refFile);
-    }
 }

@@ -71,18 +71,15 @@ public class corbaC {
             public void run() {
                 c.add(cc);
                 int inp = -1;
-                int bid = 0;
+                String bid="";
                 do {
-                    str = "Auction Started";
-                    try {
-                        BackendServ.writeLog(str);
-                    } catch (IOException ex) {
-                        Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    out.print(c.setName("Reloj Segundo Imperio") + c.originalPrice() + " " + c.setClient("ClienteJ") + " Offered: " + c.finalPrice()
-                            + "\nAction (+/e)? ");
+                    out.print((clt.getProdLabel().getText()+" "+
+                            clt.getOrgPrice().getText()+" "+
+                            clt.getFnlPrice().getText()+"\nAction (+/e)? "));
                     out.flush();
-                    str = c.setName("") + c.originalPrice() + " " + c.setClient("a") + " Offered: " + c.finalPrice();
+                    str= clt.getProdLabel().getText()+" "+
+                            clt.getOrgPrice().getText()+" "+
+                            clt.getFnlPrice().getText();
                     try {
                         BackendServ.writeLog(str);
                     } catch (IOException ex) {
@@ -97,15 +94,17 @@ public class corbaC {
                     if (inp == '+') {
                         out.println("How much?");
                         Scanner sc = new Scanner(System.in);
-                        bid = sc.nextInt();
-                        System.out.println("just bid " + bid);
-                        str = "Client bid " + bid;
+                        bid = clt.getPriceArea().getText();
+                        System.out.println(clt.getcName().getText()+" just bid " + bid);
+                        str = clt.getcName().getText()+" bid: " + bid;
+                        int sum=Integer.parseInt(clt.getOrgPrice().getText())+Integer.parseInt(bid);
+                        clt.getFnlPrice().setText(String.valueOf(bid));
                         try {
                             BackendServ.writeLog(str);
                         } catch (IOException ex) {
                             Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        c.bid(bid);
+                        c.bid(Integer.parseInt(bid));
 
                     }
                 } while (inp != 'e');
@@ -115,8 +114,8 @@ public class corbaC {
         }).start();
     }
 
-    public corbaC(String[] args, String refFile) {
-        
+    public corbaC(String[] args, String refFile, ClientPanel clt) {
+        this.clt=clt;
         try {
             initializeORB(args);
             org.omg.CORBA.Object obj = getRef(refFile);
@@ -140,10 +139,10 @@ public class corbaC {
         this.clt=clt;
     }
 
-    public static void main(String[] args) throws IOException, GeneralSecurityException {
-
+    public static void main(String[] args, ClientPanel clt) throws IOException, GeneralSecurityException {
+        
         String refFile = "CBCounter.ref";
-        corbaC c=new corbaC(args, refFile);
+        corbaC c=new corbaC(args, refFile,clt);
     }
 
 }
