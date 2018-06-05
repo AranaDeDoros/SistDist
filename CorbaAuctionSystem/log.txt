@@ -1,9 +1,27 @@
-ServerStarted 2018-06-04 02:30:50.813
-Reloj Segundo Imperio 25555 0
-sagasu offered:150505
-sagasu bid: 150505
-Server information. Now at: 150505
-Reloj Segundo Imperio 25555 150505
-sagasu quit
-Accepted: 150505 from Client
+ServerStarted 2018-06-04 02:56:02.706
+Offering Reloj Segundo Imperio initial price: 25555 current offer: 0
+anon bid: 1000
+Server information. Now at: 1000
+Server information. Now at: 1000
+anon2 bid: 20000
+Server information. Now at: 20000
+Server information. Now at: 20000
+Accepted: 20000 from Client
+AuctionFinished
+ServerStarted 2018-06-05 08:36:08.769
+Offering Reloj Segundo Imperio initial price: 25555 current offer: 123
+ServerStarted 2018-06-05 08:40:23.396
+Offering Reloj Segundo Imperio initial price: 25555 current offer: 123
+Accepted: 0 from Client
+ServerStarted 2018-06-05 08:41:38.739
+Offering Reloj Segundo Imperio initial price: 25555 current offer: 0
+nombreuno offered:5000
+nombre2 offered:10000
+nombreuno bid: 5000
+Server information. Now at: 5000
+Server information. Now at: 5000
+nombre2 bid: 10000
+Server information. Now at: 10000
+Server information. Now at: 10000
+Accepted: 10000 from Client
 AuctionFinished

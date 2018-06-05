@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  */
 public class AuctionClientImpl extends AuctionClientPOA {
 String str;    
+private int value;
 public void update(int value) {
  str="Server information."+ " Now at: " + value;
     System.out.println(str);
@@ -35,4 +36,13 @@ str="Client quit the auction";
     }
     System.out.println("Client quit the auction");
 }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
 }

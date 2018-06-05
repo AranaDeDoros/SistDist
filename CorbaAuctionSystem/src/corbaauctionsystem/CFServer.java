@@ -78,19 +78,18 @@ public class CFServer {
         f.setResizable(false);
         f.setVisible(true);
 
+        
         DB db = new DB();
         db.connect();
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         str = "ServerStarted " + timestamp;
         BackendServ.writeLog(str);
-//        ztr = "Offering " + db.getValue() + " initial price: " + db.getiPrice() + " current offer: " + db.getFnlPrice();
-//        BackendServ.writeLog(ztr);
+        ztr = "Offering " + db.getValue() + " initial price: " + db.getiPrice() + " current offer: " + db.getFnlPrice();
+        BackendServ.writeLog(ztr);
         String refFile = "CBCounter.ref";
        new CFServer(args, refFile);
 
-    
-    //////////SOCKET
     }
 }
 

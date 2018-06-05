@@ -77,14 +77,14 @@ public class corbaC {
                             clt.getOrgPrice().getText()+" "+
                             clt.getFnlPrice().getText()+"\nAction (+/e)? "));
                     out.flush();
-                    str= clt.getProdLabel().getText()+" "+
-                            clt.getOrgPrice().getText()+" "+
-                            clt.getFnlPrice().getText();
-                    try {
-                        BackendServ.writeLog(str);
-                    } catch (IOException ex) {
-                        Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+//                    str= clt.getProdLabel().getText()++" "+
+//                            clt.getOrgPrice().getText()+" "+
+//                            clt.getFnlPrice().getText();
+//                    try {
+//                        BackendServ.writeLog(str);
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                     do {
                         try {
                             inp = in.read();

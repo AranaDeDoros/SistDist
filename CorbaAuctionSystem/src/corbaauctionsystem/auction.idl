@@ -1,16 +1,22 @@
+module AuctionSist
+{
+interface AuctionClient
+{
+void update(in long value);
+void quit();
+oneway void shutdown();
 
-  module AuctionSist {
-    struct AuctionObject{
-        string client;
-        string name;
-        double originalPrice;
-        double finalPrice;
-    };
+};
 
-    interface AuctionOps{
-     AuctionObject bid(in AuctionObject obj);
-     void notify(in AuctionObject obj);
-      oneway void quit(in AuctionObject obj);
-      oneway  void shutdown();
-    };
-  };
+interface Auction
+{
+readonly attribute double originalPrice;
+readonly attribute double finalPrice;
+readonly attribute string name;
+readonly attribute string client;
+void bid();
+void add(in AuctionClient cc);
+void remove(in AuctionClient cc);
+oneway void shutdown();
+};
+};

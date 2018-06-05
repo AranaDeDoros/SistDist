@@ -1,16 +1,8 @@
 package corbaauctionsystem;
 
-import AuctionSist.*;
 import java.io.*;
-import java.util.*;
-import org.omg.CORBA.*;
-import static java.lang.System.*;
 import java.security.GeneralSecurityException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
-import org.omg.PortableServer.POA;
-import org.omg.PortableServer.POAHelper;
 
 public class CFClient {
 

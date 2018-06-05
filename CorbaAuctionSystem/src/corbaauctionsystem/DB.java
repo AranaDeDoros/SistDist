@@ -1,6 +1,5 @@
 package corbaauctionsystem;
 
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -20,28 +19,28 @@ import org.bson.Document;
  * @author HP
  */
 public class DB {
-    
+
     ServerPanel p;
-     ClientPanel c;
+    ClientPanel c;
     private String iPrice;
     private String value;
     private String key;
     private String fnlPrice;
     private String orgP;
     private String fnlP;
-    
-    public DB(){
-        
+
+    public DB() {
+
     }
 
-     public DB(ServerPanel p){
-        this.p=p;
+    public DB(ServerPanel p) {
+        this.p = p;
     }
-     
-     public DB(ClientPanel c){
-        this.c=c;
+
+    public DB(ClientPanel c) {
+        this.c = c;
     }
-     
+
     public void connect() {
 
         String second = "";
@@ -95,8 +94,8 @@ public class DB {
         product = first.replaceAll("\\{|\\}|\"|:|", "").trim().replaceAll("  ", " ");
         //System.out.println(product);
         String values[] = product.split("pname");
-         key = product.substring(0, 5);
-         value = values[1].trim();
+        key = product.substring(0, 5);
+        value = values[1].trim();
 //        System.out.println(key); //key
 //        System.out.println(value); //value
 
@@ -106,10 +105,10 @@ public class DB {
         //System.out.println(prices);
         String oPrice[] = prices.split("\\D+");
         String fPrice[] = prices.split("\\d+");
-        iPrice=oPrice[1];
-        fnlPrice=oPrice[2];
-        orgP=fPrice[0];
-        fnlP=fPrice[1].trim();
+        iPrice = oPrice[1];
+        fnlPrice = oPrice[2];
+        orgP = fPrice[0];
+        fnlP = fPrice[1].trim();
 //        System.out.println(iPrice);
 //        System.out.println(fnlPrice);
 //        System.out.println(orgP);
@@ -121,7 +120,7 @@ public class DB {
     }
 
     public void createClient(String username) {
-      // Create seed data
+        // Create seed data
         List<Document> seedData = new ArrayList<Document>();
 
         seedData.add(new Document("name", username));
@@ -140,29 +139,27 @@ public class DB {
     }
 
     public void sendProductData(String pname, String fnlP) {
-      // Create seed data
+        // Create seed data
         List<Document> seedData = new ArrayList<Document>();
 
-  //      seedData.add(new Document("name", pname));
+        //      seedData.add(new Document("name", pname));
 //        seedData.add(new Document("name", username));
 //        seedData.add(new Document("name", username));
-
         // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
         MongoClientURI uri = new MongoClientURI("mongodb://tomo:tomo@ds257495.mlab.com:57495/auctionssystcorba");
         MongoClient prdcts = new MongoClient(uri);
         MongoDatabase db = prdcts.getDatabase(uri.getDatabase());
 
         MongoCollection<Document> products = db.getCollection("prdcts");
-      
+
         Document query = new Document();
-        query.append("pname",pname);
+        query.append("pname", pname);
         Document setData = new Document();
         setData.append("finalPrice", fnlP);
         Document update = new Document();
         update.append("$set", setData);
-        products.updateOne(query,update);
-                
-        
+        products.updateOne(query, update);
+
 //        clients.insertMany(seedData);
         //products.drop();
         prdcts.close();

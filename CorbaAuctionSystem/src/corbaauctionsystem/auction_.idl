@@ -1,0 +1,16 @@
+
+  module AuctionSist {
+    struct AuctionObject{
+        string client;
+        string name;
+        double originalPrice;
+        double finalPrice;
+    };
+
+    interface AuctionOps{
+     AuctionObject bid(in AuctionObject obj);
+     void notify(in AuctionObject obj);
+      oneway void quit(in AuctionObject obj);
+      oneway  void shutdown();
+    };
+  };
