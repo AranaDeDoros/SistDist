@@ -21,6 +21,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.omg.CORBA.BAD_PARAM;
 import org.omg.CORBA.ORB;
 import org.omg.PortableServer.POA;
@@ -31,6 +32,34 @@ import org.omg.PortableServer.POAHelper;
  * @author HP
  */
 public class corbaC {
+
+    /**
+     * @return the c
+     */
+    public Auction getC() {
+        return c;
+    }
+
+    /**
+     * @param c the c to set
+     */
+    public void setC(Auction c) {
+        this.c = c;
+    }
+
+    /**
+     * @return the cc
+     */
+    public AuctionClient getCc() {
+        return cc;
+    }
+
+    /**
+     * @param cc the cc to set
+     */
+    public void setCc(AuctionClient cc) {
+        this.cc = cc;
+    }
 
     private static String str;
     private ORB orb;
@@ -65,67 +94,48 @@ public class corbaC {
         return obj;
     }
 
-    private void businessLogic(final Auction c,
-            final AuctionClient cc) {
-        new Thread(new Runnable() {
-            public void run() {
-                c.add(cc);
-                int inp = -1;
-                String bid="";
-                do {
-                    out.print((clt.getProdLabel().getText()+" "+
-                            clt.getOrgPrice().getText()+" "+
-                            clt.getFnlPrice().getText()+"\nAction (+/e)? "));
-                    out.flush();
-//                    str= clt.getProdLabel().getText()++" "+
-//                            clt.getOrgPrice().getText()+" "+
-//                            clt.getFnlPrice().getText();
-//                    try {
-//                        BackendServ.writeLog(str);
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-                    do {
-                        try {
-                            inp = in.read();
-                        } catch (IOException ioe) {
-                        }
-                    } while (inp != '+' && inp != 'e');
-                    if (inp == '+') {
-                        out.println("How much?");
-                        Scanner sc = new Scanner(System.in);
-                        bid = clt.getPriceArea().getText();
-                        System.out.println(clt.getcName().getText()+" just bid " + bid);
-                        str = clt.getcName().getText()+" bid: " + bid;
-                        int sum=Integer.parseInt(clt.getOrgPrice().getText())+Integer.parseInt(bid);
-                        clt.getFnlPrice().setText(String.valueOf(bid));
-                        try {
-                            BackendServ.writeLog(str);
-                        } catch (IOException ex) {
-                            Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        c.bid(Integer.parseInt(bid));
+    public void businessLogic(Auction c, AuctionClient cc) {
+//        new Thread(new Runnable() {
+//            public void run() {
 
-                    }
-                } while (inp != 'e');
-                c.remove(cc);
-                exit(0);
-            }
-        }).start();
+////                int inp = -1;
+        String bid = "";
+        bid = clt.getPriceArea().getText();
+        System.out.println(clt.getcName().getText() + " just bid " + bid);
+        str = clt.getcName().getText() + " bid: " + bid;
+        //JOptionPane.showMessageDialog(clt,str);
+        int sum = Integer.parseInt(clt.getOrgPrice().getText()) + Integer.parseInt(bid);
+        clt.getFnlPrice().setText(String.valueOf(bid));
+        try {
+            BackendServ.writeLog(str);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        c.bid(Integer.parseInt(bid));
+
     }
+    private Auction c;
+    private AuctionClient cc;
 
     public corbaC(String[] args, String refFile, ClientPanel clt) {
-        this.clt=clt;
+        this.clt = clt;
         try {
             initializeORB(args);
             org.omg.CORBA.Object obj = getRef(refFile);
-            Auction c = AuctionHelper.narrow(obj);
+            c = AuctionHelper.narrow(obj);
             AuctionClientImpl cc_impl
                     = new AuctionClientImpl();
-            AuctionClient cc = cc_impl._this(orb);
+            cc = cc_impl._this(orb);
             rootPOA.the_POAManager().activate();
-            businessLogic(c, cc);
-            orb.run();
+            //businessLogic(c, cc);
+            //en este metodo se hace el update
+            c.add(cc);
+            Thread t = new Thread(new Runnable() {
+                public void run() {
+                    orb.run();
+                }
+
+            });
         } catch (BAD_PARAM ex) {
             out.println("Narrowing failed");
             exit(3);
@@ -135,14 +145,12 @@ public class corbaC {
             exit(1);
         }
     }
+
     public corbaC(ClientPanel clt) {
-        this.clt=clt;
+        this.clt = clt;
     }
 
-    public static void main(String[] args, ClientPanel clt) throws IOException, GeneralSecurityException {
-        
-        String refFile = "CBCounter.ref";
-        corbaC c=new corbaC(args, refFile,clt);
-    }
+    protected CListener cl;
+
 
 }

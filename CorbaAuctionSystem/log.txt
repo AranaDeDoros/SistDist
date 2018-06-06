@@ -1,27 +1,74 @@
-ServerStarted 2018-06-04 02:56:02.706
-Offering Reloj Segundo Imperio initial price: 25555 current offer: 0
-anon bid: 1000
-Server information. Now at: 1000
-Server information. Now at: 1000
-anon2 bid: 20000
-Server information. Now at: 20000
-Server information. Now at: 20000
-Accepted: 20000 from Client
+ServerStarted 2018-06-05 23:49:28.986
+Offering Reloj Segundo Imperio initial price: 25555 current offer: 10000
+ricardo offered:0
+ricardo bid: 0
+Server information. Now at: 0
+david offered:5000
+david bid: 5000
+Server information. Now at: 5000
+Server information. Now at: 5000
+ricardo offered:10000
+ricardo bid: 10000
+Server information. Now at: 10000
+Server information. Now at: 10000
+david offered:15000
+david bid: 15000
+Server information. Now at: 15000
+Server information. Now at: 15000
+Accepted: 15000 from Client
 AuctionFinished
-ServerStarted 2018-06-05 08:36:08.769
-Offering Reloj Segundo Imperio initial price: 25555 current offer: 123
-ServerStarted 2018-06-05 08:40:23.396
-Offering Reloj Segundo Imperio initial price: 25555 current offer: 123
+ServerStarted 2018-06-06 00:00:43.184
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 15000
+ServerStarted 2018-06-06 00:02:45.924
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 15000
+ricardo offered:0
+ricardo bid: 0
+Server information. Now at: 0
+Server information. Now at: 0
+david offered:500
+david bid: 500
+Server information. Now at: 500
+Server information. Now at: 500
 Accepted: 0 from Client
-ServerStarted 2018-06-05 08:41:38.739
-Offering Reloj Segundo Imperio initial price: 25555 current offer: 0
-nombreuno offered:5000
-nombre2 offered:10000
-nombreuno bid: 5000
-Server information. Now at: 5000
-Server information. Now at: 5000
-nombre2 bid: 10000
-Server information. Now at: 10000
-Server information. Now at: 10000
-Accepted: 10000 from Client
-AuctionFinished
+ServerStarted 2018-06-06 00:10:18.482
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 0
+ServerStarted 2018-06-06 00:14:25.904
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 0
+ricardo offered:500
+ricardo bid: 500
+Server information. Now at: 500
+Server information. Now at: 500
+david offered:0
+david bid: 0
+Server information. Now at: 0
+Server information. Now at: 0
+ricardo quit
+david quit
+ServerStarted 2018-06-06 00:17:21.559
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 0
+ricardo offered:100
+ricardo bid: 100
+Server information. Now at: 100
+Do you,ricardo want to quit?
+ServerStarted 2018-06-06 00:22:27.513
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 0
+ricardo offered:1000
+ricardo bid: 1000
+ricardo offered:100
+ricardo bid: 100
+Server information. Now at: 100
+ServerStarted 2018-06-06 00:28:34.393
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 0
+ricardo offered:200
+ricardo bid: 200
+david offered:400
+david bid: 400
+adsad offered:1000
+adsad bid: 1000
+adsad offered:1000
+adsad bid: 1000
+ServerStarted 2018-06-06 00:33:38.105
+Offering Reloj Segundo Imperio initial price: 25555 starting at: 0
+ricardo offered:550
+ricardo bid: 550
+Server information. Now at: 550

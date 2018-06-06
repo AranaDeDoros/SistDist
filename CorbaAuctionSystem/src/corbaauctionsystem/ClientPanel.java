@@ -12,6 +12,7 @@ import java.security.GeneralSecurityException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -45,6 +46,8 @@ public class ClientPanel extends javax.swing.JPanel {
         this.getOrgPrice().setText(db.getiPrice());
     }
 
+ 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

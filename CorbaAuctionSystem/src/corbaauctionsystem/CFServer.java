@@ -1,6 +1,7 @@
 package corbaauctionsystem;
 
 import AuctionSist.Auction;
+import AuctionSist.AuctionClientImpl;
 import AuctionSist.AuctionImpl;
 import java.io.*;
 import java.util.Properties;
@@ -61,13 +62,11 @@ public class CFServer {
         }
 
     }
-    
-         
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
         JFrame f = new JFrame();
         ServerPanel p = new ServerPanel();
-        ClientPanel cltp=new ClientPanel();
+        ClientPanel cltp = new ClientPanel();
         SListener l = new SListener(p);
         p.addEvents(l);
         f.setSize(700, 400);
@@ -78,18 +77,16 @@ public class CFServer {
         f.setResizable(false);
         f.setVisible(true);
 
-        
         DB db = new DB();
         db.connect();
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         str = "ServerStarted " + timestamp;
         BackendServ.writeLog(str);
-        ztr = "Offering " + db.getValue() + " initial price: " + db.getiPrice() + " current offer: " + db.getFnlPrice();
+        ztr = "Offering " + db.getValue() + " initial price: " + db.getiPrice() + " starting at: " + db.getFnlPrice();
         BackendServ.writeLog(ztr);
         String refFile = "CBCounter.ref";
-       new CFServer(args, refFile);
+        new CFServer(args, refFile);
 
     }
 }
-

@@ -14,6 +14,9 @@ import static java.lang.System.*;
 import java.security.GeneralSecurityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
 
@@ -58,7 +61,12 @@ class CListener implements ActionListener {
         JComponent origen = (JComponent) e.getSource();
         switch (origen.getName()) {
             case "bid":
-                setBid();
+                SwingUtilities.invokeLater(new Runnable() {  //Note 1
+                    public void run() {
+                        setBid();
+                    }
+                });
+
                 break;
             case "qact":
                 quit();
@@ -72,12 +80,14 @@ class CListener implements ActionListener {
     }
 
     private void setBid() {
-        
         str = c.getcName().getText() + " offered:" + c.getPriceArea().getText();
         System.out.println(str);
+        JOptionPane.showMessageDialog(p, str);
         {
             try {
                 BackendServ.writeLog(str);
+
+                corba.businessLogic(corba.getC(), corba.getCc());
             } catch (IOException ex) {
                 Logger.getLogger(SListener.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -90,8 +100,9 @@ class CListener implements ActionListener {
     }
 
     private void quit() {
-        str = c.getcName().getText() + " quit";
-        System.out.println("Client quit.");
+        str = "Do you,"+ c.getcName().getText() + " want to quit?";
+        System.out.println(c.getcName()+" quit.");
+        JOptionPane.showConfirmDialog(p, str);
         {
             try {
                 BackendServ.writeLog(str);
@@ -147,46 +158,51 @@ class CListener implements ActionListener {
         }
         return obj;
     }
+//
+//    private void businessLogic(final Auction cl,
+//            final AuctionClient cc) {
+//        new Thread(new Runnable() {
+//            public void run() {
+//                cl.add(cc);
+//                int inp = -1;
+//
+//                do {
+//                    str = "Auction Started";
+//
+//                    out.print(cl.setName("Reloj Segundo Imperio") + cl.originalPrice() + " " + cl.setClient("ClienteJ") + " Offered: " + cl.finalPrice()
+//                            + "\nAction (+/e)? ");
+//                    out.flush();
+//                    str = cl.setName("") + cl.originalPrice() + " " + cl.setClient("a") + " Offered: " + cl.finalPrice();
+//                    try {
+//                        BackendServ.writeLog(str);
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    do {
+//                        try {
+//                            inp = in.read();
+//                        } catch (IOException ioe) {
+//                        }
+//                    } while (inp != '+' && inp != 'e');
+//                    if (inp == '+') {
+//                        out.println("How much?");
+//
+//                        System.out.println("just bid " + c.getPriceArea().getText());
+//                        str = "Client bid " + c.getPriceArea().getText();
+//                        cl.bid(Integer.parseInt(c.getPriceArea().getText()));
+//
+//                    }
+//                } while (inp != 'e');
+//                cl.remove(cc);
+//                exit(0);
+//            }
+//        }).start();
+//    }
+    protected corbaC corba;
 
-    private void businessLogic(final Auction cl,
-            final AuctionClient cc) {
-        new Thread(new Runnable() {
-            public void run() {
-                cl.add(cc);
-                int inp = -1;
-                
-                do {
-                    str = "Auction Started";
-                   
-                    
-                    out.print(cl.setName("Reloj Segundo Imperio") + cl.originalPrice() + " " + cl.setClient("ClienteJ") + " Offered: " + cl.finalPrice()
-                            + "\nAction (+/e)? ");
-                    out.flush();
-                    str = cl.setName("") + cl.originalPrice() + " " + cl.setClient("a") + " Offered: " + cl.finalPrice();
-                    try {
-                        BackendServ.writeLog(str);
-                    } catch (IOException ex) {
-                        Logger.getLogger(CFClient.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    do {
-                        try {
-                            inp = in.read();
-                        } catch (IOException ioe) {
-                        }
-                    } while (inp != '+' && inp != 'e');
-                    if (inp == '+') {
-                        out.println("How much?");
-                
-                        System.out.println("just bid " + c.getPriceArea().getText());
-                        str = "Client bid " + c.getPriceArea().getText();
-                        cl.bid(Integer.parseInt(c.getPriceArea().getText()));
+    public void addCorba(corbaC c) {
+        corba = c;
 
-                    }
-                } while (inp != 'e');
-                cl.remove(cc);
-                exit(0);
-            }
-        }).start();
     }
 
 }
